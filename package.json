@@ -1,0 +1,24 @@
+{
+  "name": "comp90024_twitter",
+  "version": "1.0.0",
+  "description": "not facebook",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "getTweets": "node getTweets"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mocha--/COMP9024_TWITTER.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Mocha--/COMP9024_TWITTER/issues"
+  },
+  "homepage": "https://github.com/Mocha--/COMP9024_TWITTER#readme",
+  "dependencies": {
+    "lodash": "^4.11.1",
+    "twitter": "^1.2.5"
+  }
+}
