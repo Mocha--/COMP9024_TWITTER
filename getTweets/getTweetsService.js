@@ -1,8 +1,6 @@
 var _ = require('lodash');
 
-var Twitter = require('./twitterConfig');
-var travelJson = require('./constant/travel');
-var oceaniaJson = require('./locations/oceania');
+var Twitter = require('../twitterConfig');
 
 function getLocations(jsonData) {
     var keywords = [];
@@ -22,12 +20,12 @@ function getLocations(jsonData) {
         keywords = keywords.concat(locations);
     }
     keywords = keywords.concat(continents);
-    keywords.push('Australia');
+    // keywords.push('Australia');
     return keywords.join();
 }
 
-function getTweets(jsonData) {
-    Twitter.client.stream('statuses/filter', {
+function getTweets(jsonData, clientNumber) {
+    Twitter.clients[clientNumber].stream('statuses/filter', {
         track: getLocations(jsonData)
     }, function(stream) {
         stream.on('data', function(tweet) {
@@ -47,4 +45,4 @@ function getTweets(jsonData) {
     });
 }
 
-getTweets(oceaniaJson);
+exports.getTweets = getTweets;

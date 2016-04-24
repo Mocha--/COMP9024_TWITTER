@@ -1,11 +1,16 @@
 var Twitter = require('twitter');
-var CONSTANTS = require('./constants');
+var twitterKeys = require('./constant/twitterApps');
 
-var client = new Twitter({
-    consumer_key: CONSTANTS.getJson.consumer_key,
-    consumer_secret: CONSTANTS.getJson.consumer_secret,
-    access_token_key: CONSTANTS.getJson.access_token_key,
-    access_token_secret: CONSTANTS.getJson.access_token_secret
-});
+clients = [];
 
-exports.client = client;
+for (var i = 0; i < 8; i++) {
+    var client = new Twitter({
+        consumer_key: twitterKeys[i].consumer_key,
+        consumer_secret: twitterKeys[i].consumer_secret,
+        access_token_key: twitterKeys[i].access_token_key,
+        access_token_secret: twitterKeys[i].access_token_secret
+    });
+    clients.push(client);
+}
+
+exports.clients = clients;

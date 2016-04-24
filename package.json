@@ -5,7 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "getTweets": "node getTweets"
+    "getTweets": "node getTweets",
+    "europe": "node getTweets/europe.js",
+    "oceania": "node getTweets/oceania.js",
+    "northAmerica": "node getTweets/northAmerica.js",
+    "southAmerica": "node getTweets/southAmerica.js",
+    "australia": "node getTweets/australia.js",
+    "africa": "node getTweets/africa.js",
+    "asia": "node getTweets/asia.js"
   },
   "repository": {
     "type": "git",

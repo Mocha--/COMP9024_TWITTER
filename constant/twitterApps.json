@@ -4,11 +4,6 @@
     "access_token_key": "3312172057-dkJ7U42Okp34CZ2TqzuvkqHAyc2yIAbdYsPemYt",
     "access_token_secret": "7g2uWxYxpBfxqk1VPofihou3BijStKHoy8QFQ62lRPjAB"
 }, {
-    "consumer_key": "fXlrX3MYkwZ34urBhzxCXH4EH",
-    "consumer_secret": "fXlrX3MYkwZ34urBhzxCXH4EH",
-    "access_token_key": "715407841985605633-NcUq1bxAbNwNKi6e3oW6op34tuTEZkJ",
-    "access_token_secret": "P3Fp2nMNKJZWNUGGoF8Zji1wK7rjk0iBdBmolOAJ5n0qX"
-}, {
     "consumer_key": "GjE7ZsB4hk1jU7EklmhMszNIm",
     "consumer_secret": "eJEtSmgWUIdiLizlu68tE7tciHTt2HgBqyX3xsy4iU65roGTDc",
     "access_token_key": "715407841985605633-iQ63x3R6KEPFKnoDUqQKlMZqwOjX8wm",
@@ -24,15 +19,15 @@
     "access_token_key": "715407841985605633-VY5TyWnJsXTsYJL2I6AMULnFfvJL76u",
     "access_token_secret": "9y1k2NhsaETmbQn4BgLtrxBfKwIVts1xKwapTRUzXiZat"
 }, {
-    "Customer Key": "pza34ZRIfmAJeNWhtFsBKYkLu",
-    "Customer Secret": "KhFW4cDPeye5ixEegKrhYLnKcOZIe3d1dFU1MUr15R9iT4xHcn",
-    "Access Token": "724073710521454592-tXhF1iJe0uC6kRTL7NA0vj3mOMo23Od",
-    "Access Token Secret": "8jUug0WlNFXGknH8WIdfql8rGPxBsRrfJAkjQl3acv4wX"
+    "consumer_key": "pza34ZRIfmAJeNWhtFsBKYkLu",
+    "consumer_secret": "KhFW4cDPeye5ixEegKrhYLnKcOZIe3d1dFU1MUr15R9iT4xHcn",
+    "access_token_key": "724073710521454592-tXhF1iJe0uC6kRTL7NA0vj3mOMo23Od",
+    "access_token_secret": "8jUug0WlNFXGknH8WIdfql8rGPxBsRrfJAkjQl3acv4wX"
 }, {
-    "Customer Key": "GlB7Hlu1abXMWrwMm9idEjPCT",
-    "Customer Secret": "wykdalG8OPcDfBBaFR9Q9O9bxDnhiO9ipcOaobrbMYiD7i6p4b",
-    "Access Token": "819175147-M2lcPu7cLh6HSVGIIOtaFU6SZPntlhGOzDyd4qHH",
-    "Access Token Secret": "iJCIZvSgONi7pcK02Mju0nFGt5dqyYyweMoZ2osgJk5BY"
+    "consumer_key": "GlB7Hlu1abXMWrwMm9idEjPCT",
+    "consumer_secret": "wykdalG8OPcDfBBaFR9Q9O9bxDnhiO9ipcOaobrbMYiD7i6p4b",
+    "access_token_key": "819175147-M2lcPu7cLh6HSVGIIOtaFU6SZPntlhGOzDyd4qHH",
+    "access_token_secret": "iJCIZvSgONi7pcK02Mju0nFGt5dqyYyweMoZ2osgJk5BY"
 }, {
     "consumer_key": "T5bsTpwOrC0lev0rYGJ921HJ7",
     "consumer_secret": "FyWFIzeKUbPq4Idbe0UmDbopuKwZkQvGnAShI6YD23Kzd2C03t",
