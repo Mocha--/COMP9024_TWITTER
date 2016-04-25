@@ -24,19 +24,27 @@ function getLocations(jsonData) {
     return keywords.join();
 }
 
-function getTweets(jsonData, clientNumber) {
+function getTweets(jsonData, clientNumber, cb) {
     Twitter.clients[clientNumber].stream('statuses/filter', {
         track: getLocations(jsonData)
     }, function(stream) {
         stream.on('data', function(tweet) {
             if (tweet.user) {
-                userName = tweet.user.name || "****";
-                screenName = tweet.user.screen_name || "****";
-                created = tweet.created_at || "****";
-                location = tweet.user.location || "****";
-                retweetCount = tweet.retweet_count;
-                text = tweet.text || "****";
-                console.log([userName, screenName, created, location, retweetCount, text]);
+                // userName = tweet.user.name || "****";
+                // screenName = tweet.user.screen_name || "****";
+                // created = tweet.created_at || "****";
+                // location = tweet.user.location || "****";
+                // retweetCount = tweet.retweet_count;
+                // text = tweet.text || "****";
+                // console.log([userName, screenName, created, location, retweetCount, text]);
+                cb({
+                    userName: userName,
+                    screenName: screenName,
+                    created: created,
+                    location: location,
+                    retweetCount: retweetCount,
+                    text: text
+                })
             }
         });
         stream.on('error', function(error) {
