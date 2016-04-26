@@ -24,7 +24,7 @@ function getLocations(jsonData) {
     return keywords.join();
 }
 
-function getTweets(jsonData, clientNumber) {
+function getTweets(jsonData, clientNumber, cb) {
     var locations = getLocations(jsonData);
     Twitter.clients[clientNumber].stream('statuses/filter', {
         track: locations
@@ -32,15 +32,24 @@ function getTweets(jsonData, clientNumber) {
         stream.on('data', function(tweet) {
             if (tweet.user) {
                 var keywords = getKeywords(jsonData, tweet.text);
-                var userName = tweet.user.name || "****";
-                var screenName = tweet.user.screen_name || "****";
-                var created = tweet.created_at || "****";
-                var location = tweet.user.location || "****";
-                var retweetCount = tweet.retweet_count;
-                var text = tweet.text || "****";
-                console.log(keywords)
-                console.log("******************************")
-                // console.log([userName, screenName, created, location, retweetCount, text]);
+                if (keywords.length != 0) {
+                    var userName = tweet.user.name || "****";
+                    var screenName = tweet.user.screen_name || "****";
+                    var created = tweet.created_at || "****";
+                    var location = tweet.user.location || "****";
+                    var retweetCount = tweet.retweet_count;
+                    var text = tweet.text || "****";
+
+                    cb({
+                        userName: userName,
+                        screenName: screenName,
+                        created: created,
+                        location: location,
+                        retweetCount: retweetCount,
+                        text: text,
+                        keywords: keywords
+                    });
+                }
             }
         });
         stream.on('error', function(error) {
@@ -54,12 +63,12 @@ function getKeywords(jsonData, text) {
     var locationsArray = locations.split(",");
     var wordsArray = text.split(" ");
     var keywords = [];
-    for(var i = 0; i < wordsArray.length; i++) {
-        if(locationsArray.indexOf(wordsArray[i].toLowerCase()) >= 0) {
-            if(keywords.indexOf(wordsArray[i].toLowerCase()) == -1) {
+    for (var i = 0; i < wordsArray.length; i++) {
+        if (locationsArray.indexOf(wordsArray[i].toLowerCase()) >= 0) {
+            if (keywords.indexOf(wordsArray[i].toLowerCase()) == -1) {
                 keywords.push(wordsArray[i].toLowerCase());
             }
-            
+
         }
     }
     return keywords;
