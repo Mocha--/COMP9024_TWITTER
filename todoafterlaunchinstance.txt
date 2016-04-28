@@ -6,3 +6,7 @@ sudo apt-get install -V -y couchdb
 #docker pull couchdb
 #sudo docker run -p 5984:5984 -d --name couchdb couchdb
 sudo apt-get install vim
+
+
+#nodejs
+sudo npm install -g pm2
