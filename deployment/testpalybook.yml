@@ -1,0 +1,12 @@
+---
+- hosts: instances
+  remote_user: ubuntu
+  gather_facts: True
+  tasks:
+      - name: test connection
+        ping:
+        remote_user: ubuntu
+      
+      - name: test mkdir
+        shell: mkdir hehehe
+        remote_user: ubuntu
