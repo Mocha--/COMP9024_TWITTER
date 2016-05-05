@@ -32,16 +32,22 @@ const OCEANIA = 'oceania';
 
 // generate Australia locations
 function generateAustraliaLocations(jsonData) {
-    var locations = [AUSTRALIA];
+    var locations = {
+        country: [AUSTRALIA],
+        states: [],
+        cities: []
+    };
     var australiaJson = jsonData[AUSTRALIA];
     var states = _.keys(australiaJson);
     // store states
-    locations = locations.concat(states);
+    locations.states = convertToLowerCase(states);
+    var cities = []
     for (var i = 0; i < states.length; i++) {
-        var cities = _.keys(australiaJson[states[i]]);
+        var stateCities = _.keys(australiaJson[states[i]]);
         // store cities
-        locations = locations.concat(cities);
+        cities = cities.concat(stateCities);
     }
+    locations.cities = convertToLowerCase(cities);
     return locations;
 }
 
@@ -66,8 +72,10 @@ function findKeyword(jsonData, keyword) {
         if (keyword == AUSTRALIA) {
             result.continent = OCEANIA;
             result.country = keyword;
+            result.overseas = false;
         } else {
             result.continent = keyword;
+            result.overseas = true;
         }
         return result;
     } else {
@@ -80,6 +88,7 @@ function findKeyword(jsonData, keyword) {
                     // keyword is a country
                     result.continent = continentsLowerCase[i];
                     result.country = keyword;
+                    result.overseas = true;
                     return result;
                 } else {
                     // city level
@@ -89,6 +98,7 @@ function findKeyword(jsonData, keyword) {
                             result.continent = continentsLowerCase[i];
                             result.country = countriesLowerCase[j];
                             result.city = keyword;
+                            result.overseas = true;
                             return result;
                         }
                     }
@@ -101,6 +111,7 @@ function findKeyword(jsonData, keyword) {
                     result.continent = OCEANIA;
                     result.country = AUSTRALIA;
                     result.state = keyword;
+                    result.overseas = false;
                     return result;
                 } else {
                     // city level
@@ -113,6 +124,7 @@ function findKeyword(jsonData, keyword) {
                             result.country = AUSTRALIA;
                             result.state = statesLowerCase[j];
                             result.city = keyword;
+                            result.overseas = false;
                             return result;
                         } else {
                             for (var k = 0; k < cities.length; k++) {
@@ -122,6 +134,7 @@ function findKeyword(jsonData, keyword) {
                                     result.country = AUSTRALIA;
                                     result.state = statesLowerCase[j];
                                     result.city = citiesLowerCase[k];
+                                    result.overseas = false;
                                     return result;
                                 }
                             }
@@ -146,8 +159,9 @@ function languageDetect(tweet, travelWords, jsonData) {
             // get language
             var language = result.languages[0].name;
             // analyze tweet from Australian
-            if (language === 'ENGLISH' && locationDetect(tweet, jsonData)) {
-                analyzeTwitterText(tweet, travelWords, jsonData);
+            var from = locationDetect(tweet, jsonData);
+            if (language === 'ENGLISH' && (from.country !== '' || from.state !== '' || from.city !== '')) {
+                analyzeTwitterText(tweet, travelWords, jsonData, from);
             } else {
                 if (language !== 'ENGLISH') {
                     console.log("Language is not English, it is " + language);
@@ -166,21 +180,29 @@ function locationDetect(tweet, jsonData) {
     var location = tweet.location;
     // convert location to array
     var userLocations = location.split(', ');
+    var from = {
+        country: null,
+        state: null,
+        city: null
+    };
     var australiaLocations = generateAustraliaLocations(jsonData);
-    // convert strings to lower case
-    var userLocationsLowerCase = convertToLowerCase(userLocations);
-    var australiaLocationsLowerCase = convertToLowerCase(australiaLocations);
-    // get intersection between user location and pre-defined Austraila locations
-    var intersection = _.intersection(userLocationsLowerCase, australiaLocationsLowerCase);
-    if (intersection.length > 0) {
-        return true;
-    } else {
-        return false;
+    for (var i = 0; i < userLocations.length; i++) {
+        var userLocationLowerCase = userLocations[i].toLowerCase();
+        if (_.indexOf(australiaLocations.country, userLocationLowerCase) > -1) {
+            from.country = userLocationLowerCase;
+        }
+        if (_.indexOf(australiaLocations.states, userLocationLowerCase) > -1) {
+            from.state = userLocationLowerCase;
+        }
+        if (_.indexOf(australiaLocations.cities, userLocationLowerCase) > -1) {
+            from.city = userLocationLowerCase;
+        }
     }
+    return from;
 }
 
 // seperate twitter text into tokens
-function analyzeTwitterText(tweet, travelWords, jsonData) {
+function analyzeTwitterText(tweet, travelWords, jsonData, fromLocation) {
     var analyzedResult = sentiment(tweet.text);
     var score = analyzedResult.score;
     var tokens = analyzedResult.tokens;
@@ -195,8 +217,6 @@ function analyzeTwitterText(tweet, travelWords, jsonData) {
         for (var i = 0; i < tweet.keywords.length; i++) {
             var keyword = tweet.keywords[i].toLowerCase();
             var result = findKeyword(jsonData, keyword);
-            var overseas = false;
-            result === AUSTRALIA ? overseas = false : overseas = true
             var newTweet = {
                 attitude: attitude,
                 to: {
@@ -205,8 +225,8 @@ function analyzeTwitterText(tweet, travelWords, jsonData) {
                     country: result.country,
                     city: result.city,
                 },
-                from: tweet.location,
-                overseas: overseas
+                from: fromLocation,
+                overseas: result.overseas
             };
             writeTweet(newTweet);
         }
@@ -217,39 +237,35 @@ function writeTweet(tweet) {
     console.log(tweet);
 }
 
-// get the tweet
-// var tweet = readTweet();
-// analyze the tweet
-// languageDetect(tweet, travelWords, jsonData);
 var tweets = [{
-    text: "MELBOURNE IS GOOD, and I want to fly to SYDNEY!",
-    keywords: ["MELBOURNE", 'Sydney'],
-    location: "Mornington Peninsula, Australia"
-}, {
-    text: "I flew to Beijing last week, and will go to Paro next month",
-    keywords: ['Beijing', 'Paro'],
-    location: "Victoria"
-}, {
-    text: 'RT @akyakyakya: うれピーマン＼(^o^)／RT @OralJOE: JAPAN JAM オーラルの物販ダントツで列エグいみたいやんけーー！！最高ですっ！BKW！今から向かうぞー(*☻-☻*) https://t.co/HysvQD2zVM',
-    keywords: ['japan'],
-    location: "Japan"
-}, {
-    text: 'RT @abhijitmajumder: Intolerance in India rising, says USCIRF, a body created by US to preach to others while back home rages a black-n-whi',
-    keywords: ['india'],
-    location: "China"
-}, {
-    text: 'Eu não consigo falar só uma coisa, quando eu falo eu embalo e não paro mais isso é muito chato',
-    keywords: ['paro'],
-    location: "Melbourne"
-}, {
-    text: "@Remilucy92 That's great! Now in wangfujing this week is golden week, national holiday.",
-    keywords: ['wangfujing'],
-    location: "New South Wales"
-}, {
-    text: 'Aw karon kantahon sag "See you again" but hopefully balikan sad kag "Im coming home" hahahahaha ok rna oy',
-    keywords: ['karon'],
-    location: "America"
-}];
+        text: "MELBOURNE IS GOOD, and I want to fly to SYDNEY!",
+        keywords: ["MELBOURNE", 'Sydney'],
+        location: "Mornington Peninsula, Australia"
+    }, {
+        text: "I flew to Beijing last week, and will go to Paro next month",
+        keywords: ['Beijing', 'Paro'],
+        location: "Victoria"
+    }, {
+        text: 'RT @akyakyakya: うれピーマン＼(^o^)／RT @OralJOE: JAPAN JAM オーラルの物販ダントツで列エグいみたいやんけーー！！最高ですっ！BKW！今から向かうぞー(*☻-☻*) https://t.co/HysvQD2zVM',
+        keywords: ['japan'],
+        location: "Japan"
+    }, {
+        text: 'RT @abhijitmajumder: Intolerance in India rising, says USCIRF, a body created by US to preach to others while back home rages a black-n-whi',
+        keywords: ['india'],
+        location: "China"
+    }, {
+        text: 'Eu não consigo falar só uma coisa, quando eu falo eu embalo e não paro mais isso é muito chato',
+        keywords: ['paro'],
+        location: "Melbourne"
+    }, {
+        text: "@Remilucy92 That's great! Now in wangfujing this week is golden week, national holiday.",
+        keywords: ['wangfujing'],
+        location: "New South Wales"
+    }, {
+        text: 'Aw karon kantahon sag "See you again" but hopefully balikan sad kag "Im coming home" hahahahaha ok rna oy',
+        keywords: ['karon'],
+        location: "America"
+    }];
 
 for (var i = 0; i < tweets.length; i++) {
     languageDetect(tweets[i], travelWords, jsonData);
