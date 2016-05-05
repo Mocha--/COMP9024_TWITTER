@@ -33,10 +33,13 @@ let processDataRecursively = function(startDocId) {
             let offset = res.body.offset;
             if (offset <= totalDocNum - 10000) {
                 let rows = res.body.rows;
-                console.log(rows);
-                console.log('----------------');
-                // TODO: analyze and then insert results to db
+                // console.log(rows);
+                // console.log('----------------');
                 let lastDoc = rows[rows.length - 1];
+                for (let doc of rows) {
+                    // TODO: analyze and then insert results to db
+                }
+
                 processDataRecursively(lastDoc.id)
             }
         })
