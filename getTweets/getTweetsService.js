@@ -24,7 +24,7 @@ function getLocations(jsonData) {
     return keywords.join();
 }
 
-function getTweets(jsonData, clientNumber, cb) {
+function getTweets(jsonData, clientNumber) {
     var locations = getLocations(jsonData);
     Twitter.clients[clientNumber].stream('statuses/filter', {
         track: locations
@@ -39,16 +39,21 @@ function getTweets(jsonData, clientNumber, cb) {
                     var location = tweet.user.location || "****";
                     var retweetCount = tweet.retweet_count;
                     var text = tweet.text || "****";
-
-                    cb({
-                        userName: userName,
-                        screenName: screenName,
-                        created: created,
-                        location: location,
-                        retweetCount: retweetCount,
-                        text: text,
-                        keywords: keywords
-                    });
+                    
+                    if(location.indexOf('Australia') != -1) {
+                        console.log(text)
+                    console.log(keywords)
+                    console.log(location)
+                    }
+                    // cb({
+                    //     userName: userName,
+                    //     screenName: screenName,
+                    //     created: created,
+                    //     location: location,
+                    //     retweetCount: retweetCount,
+                    //     text: text,
+                    //     keywords: keywords
+                    // });
                 }
             }
         });

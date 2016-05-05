@@ -26,7 +26,8 @@
   },
   "homepage": "https://github.com/Mocha--/COMP9024_TWITTER#readme",
   "dependencies": {
-    "lodash": "^4.11.1",
+    "cld": "^2.4.5",
+    "lodash": "^4.11.2",
     "nano": "^6.2.0",
     "sentiment": "^1.0.6",
     "twitter": "^1.2.5"
