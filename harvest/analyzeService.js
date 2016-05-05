@@ -130,7 +130,7 @@ function analyze(tweet, travelWords, jsonData, cb) {
             var language = result.languages[0].name;
             // analyze tweet from Australian
             var from = locationDetect(tweet, jsonData);
-            if (language === 'ENGLISH' && (from.country !== '' || from.state !== '' || from.city !== '')) {
+            if (language === 'ENGLISH' && (from.country !== null || from.state !== null || from.city !== null)) {
                 newTweetArray = analyzeTwitterText(tweet, travelWords, jsonData, from);
                 console.log(newTweetArray);
                 for(var i = 0 ; i < newTweetArray.length; i++) {
