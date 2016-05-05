@@ -125,27 +125,19 @@ function findKeyword(jsonData, keyword) {
 function analyze(tweet, travelWords, jsonData, cb) {
     var newTweetArray = [];
     cld.detect(tweet.text, function(err, result) {
-        if (!err) {
+        if (!err && result.languages && result.languages.length > 0) {
             // get language
             var language = result.languages[0].name;
             // analyze tweet from Australian
             var from = locationDetect(tweet, jsonData);
-            if (language === 'ENGLISH' && (from.country !== null || from.state !== null || from.city !== null)) {
+            if (language === 'ENGLISH' && from.country !== null ) {
                 newTweetArray = analyzeTwitterText(tweet, travelWords, jsonData, from);
                 console.log(newTweetArray);
                 for(var i = 0 ; i < newTweetArray.length; i++) {
                     cb(newTweetArray[i]);
                 }
-            } else {
-                if (language !== 'ENGLISH') {
-                    // console.log("Language is not English, it is " + language);
-                } else {
-                    // console.log("User does not come from Australia, he or she comes from " + tweet.location);
-                }
             }
-        } else {
-            // console.log(err);
-        }
+        } 
     });
 }
 
@@ -160,6 +152,7 @@ function locationDetect(tweet, jsonData) {
         city: null
     };
     var australiaLocations = generateAustraliaLocations(jsonData);
+    // store state and city
     for (var i = 0; i < userLocations.length; i++) {
         var userLocationLowerCase = userLocations[i].toLowerCase();
         if (_.indexOf(australiaLocations.country, userLocationLowerCase) > -1) {
@@ -172,6 +165,21 @@ function locationDetect(tweet, jsonData) {
             from.city = userLocationLowerCase;
         }
     }
+
+    if (from.state === null && from.city !== null) {
+        var australiaJson = jsonData[AUSTRALIA];
+        var states = _.keys(australiaJson);
+        for (var i = 0; i < states.length; i++) {
+            var cities = _.keys(australiaJson[states[i]]);
+            var citiesLowerCase = convertToLowerCase(cities);
+            if (_.indexOf(citiesLowerCase, from.city) > -1) {
+                from.state = states[i].toLowerCase();
+                from.country = AUSTRALIA;
+            }
+        }
+    } else if(from.state !== null) {
+        from.country = AUSTRALIA;
+    } 
     return from;
 }
 
@@ -184,7 +192,6 @@ function analyzeTwitterText(tweet, travelWords, jsonData, fromLocation) {
     // get intersection between tokens and pre-defined words list
     var intersection = _.intersection(tokens, travelWords);
     if (intersection.length === 0) {
-        // console.log('This twitter is not about travel.');
         return newTweetArray;
     } else {
         var attitude = '';
