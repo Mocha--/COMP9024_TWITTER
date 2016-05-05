@@ -1,6 +1,9 @@
 var _ = require('lodash');
 
 var Twitter = require('../twitterConfig');
+var analyzeService = require('../analyzeService');
+var travelWords = require('../constant/travelWords');
+var travelJson = require('../constant/locations/travel');
 
 function getLocations(jsonData) {
     var keywords = [];
@@ -20,11 +23,10 @@ function getLocations(jsonData) {
         keywords = keywords.concat(locations);
     }
     keywords = keywords.concat(continents);
-    // keywords.push('Australia');
     return keywords.join();
 }
 
-function getTweets(jsonData, clientNumber) {
+function getTweets(jsonData, clientNumber, cb) {
     var locations = getLocations(jsonData);
     Twitter.clients[clientNumber].stream('statuses/filter', {
         track: locations
@@ -39,21 +41,16 @@ function getTweets(jsonData, clientNumber) {
                     var location = tweet.user.location || "****";
                     var retweetCount = tweet.retweet_count;
                     var text = tweet.text || "****";
-                    
-                    if(location.indexOf('Australia') != -1) {
-                        console.log(text)
-                    console.log(keywords)
-                    console.log(location)
-                    }
-                    // cb({
-                    //     userName: userName,
-                    //     screenName: screenName,
-                    //     created: created,
-                    //     location: location,
-                    //     retweetCount: retweetCount,
-                    //     text: text,
-                    //     keywords: keywords
-                    // });
+                    var obj = {
+                        userName: userName,
+                        screenName: screenName,
+                        created: created,
+                        location: location,
+                        retweetCount: retweetCount,
+                        text: text,
+                        keywords: keywords
+                    };
+                    var newTweetArray = analyzeService.analyze(obj, travelWords.list, travelJson, cb);
                 }
             }
         });

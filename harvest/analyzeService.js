@@ -1,31 +1,6 @@
 var sentiment = require('sentiment');
 var cld = require('cld');
 var _ = require('lodash');
-var jsonData = require('./locations/travel');
-
-var travelWords = ['airfare', 'airplane', 'airplanes', 'airport', 'airports', 'automobile', 'automobiles',
-    'backpack', 'backpacks', 'baggage', 'baggages', 'bag', 'beaches', 'bicycles', 'bikes', 'boats', 'buses',
-    'bags', 'beach', 'bicycle', 'bike', 'binoculars', 'boat', 'bus', 'cab', 'cabs', 'cabin', 'cabins', 'camera',
-    'cameras', 'campground', 'campgrounds', 'camping', 'campings', 'car', 'cars', 'carry-on', 'chart', 'charts',
-    'coast', 'coasts', 'cruise', 'cruises', 'currency', 'customs', 'depart', 'departed', 'departure', 'departures',
-    'destination', 'destinations', 'downtime', 'drive', 'drove', 'driven', 'embark', 'embarked', 'excursion',
-    'expedition', 'explore', 'explored', 'ferry', 'flew', 'flight', 'fly', 'foreign', 'foreigner', 'garment',
-    'getaway', 'go', 'went', 'guide', 'guided', 'hiatus', 'highway', 'hike', 'hiked', 'holiday', 'holidays',
-    'hostel', 'hostels', 'hotel', 'hotels', 'inn', 'inns', 'island', 'islands', 'itinerary', 'jet', 'jets',
-    'journey', 'keepsake', 'keepsakes', 'knapsack', 'knapsacks', 'lake', 'lakes', 'landing', 'landings', 'leave',
-    'left', 'leisure', 'lodge', 'lodges', 'lodging', 'luggage', 'luggages', 'map', 'maps', 'motel', 'motels',
-    'mountains', 'mountain', 'museum', 'museums', 'national', 'liner', 'outdoors', 'overnight', 'pack', 'passage',
-    'passport', 'passports', 'photo', 'photos', 'photograph', 'photographs', 'picture', 'pictures', 'plane',
-    'planes', 'port', 'ports', 'postcard', 'postcards', 'recreation', 'relax', 'relaxed', 'relaxation', 'reservations',
-    'reservation', 'resort', 'resorts', 'rest', 'restaurant', 'restaurants', 'return', 'returned', 'ride', 'room', 'rooms',
-    'sack', 'safari', 'sail', 'scenery', 'schedule', 'scheduled', 'sea', 'seashore', 'ship', 'ships', 'shore', 'sights',
-    'souvenir', 'souvenirs', 'stand-by', 'station', 'stay', 'stayed', 'subway', 'subways', 'suitcase', 'suitcases',
-    'sunscreen', 'swim', 'swam', 'swimsuit', 'takeoff', 'taxi', 'tent', 'tents', 'ticket', 'tickets', 'tip', 'tips',
-    'tote', 'tour', 'tours', 'tourist', 'tourists', 'trail', 'train', 'trains', 'tram', 'trams', 'tramway', 'translate',
-    'translated', 'transportation', 'travel', 'travelled', 'traveled', 'traveling', 'travelling', 'trip', 'trips', 'trunk',
-    'umbrella', 'umbrellas', 'unpack', 'vacation', 'vehicle', 'vehicles', 'video', 'videos', 'visa', 'visit', 'visited',
-    'voyage', 'walk', 'walked', 'wander', 'wandered', 'waterfall', 'waterpack', 'weekend', 'yacht', 'zoo'
-];
 
 const AUSTRALIA = 'australia';
 const OCEANIA = 'oceania';
@@ -146,14 +121,9 @@ function findKeyword(jsonData, keyword) {
     }
 }
 
-// read tweet from database
-function readTweet() {
-    // userName, screeNname, created, location, retweetCount, text, keywords
-    return tweet;
-}
-
 // only analyze tweet in English
-function languageDetect(tweet, travelWords, jsonData) {
+function analyze(tweet, travelWords, jsonData, cb) {
+    var newTweetArray = [];
     cld.detect(tweet.text, function(err, result) {
         if (!err) {
             // get language
@@ -161,16 +131,20 @@ function languageDetect(tweet, travelWords, jsonData) {
             // analyze tweet from Australian
             var from = locationDetect(tweet, jsonData);
             if (language === 'ENGLISH' && (from.country !== '' || from.state !== '' || from.city !== '')) {
-                analyzeTwitterText(tweet, travelWords, jsonData, from);
+                newTweetArray = analyzeTwitterText(tweet, travelWords, jsonData, from);
+                console.log(newTweetArray);
+                for(var i = 0 ; i < newTweetArray.length; i++) {
+                    cb(newTweetArray[i]);
+                }
             } else {
                 if (language !== 'ENGLISH') {
-                    console.log("Language is not English, it is " + language);
+                    // console.log("Language is not English, it is " + language);
                 } else {
-                    console.log("User does not come from Australia, he or she comes from " + tweet.location);
+                    // console.log("User does not come from Australia, he or she comes from " + tweet.location);
                 }
             }
         } else {
-            console.log(err);
+            // console.log(err);
         }
     });
 }
@@ -206,14 +180,16 @@ function analyzeTwitterText(tweet, travelWords, jsonData, fromLocation) {
     var analyzedResult = sentiment(tweet.text);
     var score = analyzedResult.score;
     var tokens = analyzedResult.tokens;
+    var newTweetArray = [];
     // get intersection between tokens and pre-defined words list
     var intersection = _.intersection(tokens, travelWords);
     if (intersection.length === 0) {
-        console.log('This twitter is not about travel.');
+        // console.log('This twitter is not about travel.');
+        return newTweetArray;
     } else {
         var attitude = '';
         score >= 0 ? attitude = 'positive' : attitude = 'negative'
-            // construct new data
+        // construct new data
         for (var i = 0; i < tweet.keywords.length; i++) {
             var keyword = tweet.keywords[i].toLowerCase();
             var result = findKeyword(jsonData, keyword);
@@ -228,21 +204,10 @@ function analyzeTwitterText(tweet, travelWords, jsonData, fromLocation) {
                 from: fromLocation,
                 overseas: result.overseas
             };
-            writeTweet(newTweet);
+            newTweetArray.push(newTweet);
         }
+        return newTweetArray;
     }
 }
 
-function writeTweet(tweet) {
-    console.log(tweet);
-}
-
-// read tweet
-var tweet = readTweet();
-tweet = {
-        text: "MELBOURNE IS GOOD, and I want to fly to SYDNEY!",
-        keywords: ["MELBOURNE", 'Sydney'],
-        location: "Mornington Peninsula, Australia"
-    }
-// analyze tweet
-analyzeTwitterText(tweet, travelWords, jsonData);
+exports.analyze = analyze;
