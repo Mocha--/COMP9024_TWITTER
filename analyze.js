@@ -213,7 +213,7 @@ function analyzeTwitterText(tweet, travelWords, jsonData, fromLocation) {
     } else {
         var attitude = '';
         score >= 0 ? attitude = 'positive' : attitude = 'negative'
-        // construct new data
+            // construct new data
         for (var i = 0; i < tweet.keywords.length; i++) {
             var keyword = tweet.keywords[i].toLowerCase();
             var result = findKeyword(jsonData, keyword);
@@ -237,36 +237,12 @@ function writeTweet(tweet) {
     console.log(tweet);
 }
 
-var tweets = [{
+// read tweet
+var tweet = readTweet();
+tweet = {
         text: "MELBOURNE IS GOOD, and I want to fly to SYDNEY!",
         keywords: ["MELBOURNE", 'Sydney'],
         location: "Mornington Peninsula, Australia"
-    }, {
-        text: "I flew to Beijing last week, and will go to Paro next month",
-        keywords: ['Beijing', 'Paro'],
-        location: "Victoria"
-    }, {
-        text: 'RT @akyakyakya: うれピーマン＼(^o^)／RT @OralJOE: JAPAN JAM オーラルの物販ダントツで列エグいみたいやんけーー！！最高ですっ！BKW！今から向かうぞー(*☻-☻*) https://t.co/HysvQD2zVM',
-        keywords: ['japan'],
-        location: "Japan"
-    }, {
-        text: 'RT @abhijitmajumder: Intolerance in India rising, says USCIRF, a body created by US to preach to others while back home rages a black-n-whi',
-        keywords: ['india'],
-        location: "China"
-    }, {
-        text: 'Eu não consigo falar só uma coisa, quando eu falo eu embalo e não paro mais isso é muito chato',
-        keywords: ['paro'],
-        location: "Melbourne"
-    }, {
-        text: "@Remilucy92 That's great! Now in wangfujing this week is golden week, national holiday.",
-        keywords: ['wangfujing'],
-        location: "New South Wales"
-    }, {
-        text: 'Aw karon kantahon sag "See you again" but hopefully balikan sad kag "Im coming home" hahahahaha ok rna oy',
-        keywords: ['karon'],
-        location: "America"
-    }];
-
-for (var i = 0; i < tweets.length; i++) {
-    languageDetect(tweets[i], travelWords, jsonData);
-}
+    }
+// analyze tweet
+analyzeTwitterText(tweet, travelWords, jsonData);
