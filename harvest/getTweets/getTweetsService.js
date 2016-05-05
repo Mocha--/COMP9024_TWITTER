@@ -1,6 +1,9 @@
 var _ = require('lodash');
 
 var Twitter = require('../twitterConfig');
+var analyzeService = require('../analyzeService');
+var travelWords = require('../constant/travelWords');
+var travelJson = require('../constant/locations/travel');
 
 function getLocations(jsonData) {
     var keywords = [];
@@ -9,29 +12,41 @@ function getLocations(jsonData) {
     // First level
     for (var i = 0; i < continents.length; i++) {
         // Second level
-        var countries = _.keys(jsonData[_.keys(jsonData)[i]]);
-        keywords = keywords.concat(countries);
-        var locations = []
-        for (var j = 0; j < countries.length; j++) {
-            if (jsonData[continents[i]][countries[j]].length != 0) {
-                locations = locations.concat(jsonData[continents[i]][countries[j]]);
+        if (continents[i] === 'australia') {
+            var states = _.keys(jsonData[continents[i]]);
+            keywords = keywords.concat(states);
+            for(var j = 0; j < states.length; j++) {
+                var cities = _.keys(jsonData[continents[i]][states[j]]);
+                keywords = keywords.concat(cities);
+                for(var k = 0; k < cities.length; k++) {
+                    keywords = keywords.concat(jsonData[continents[i]][states[j]][cities[k]]);
+                }
             }
+        } else {
+            var countries = _.keys(jsonData[continents[i]]);
+            keywords = keywords.concat(countries);
+            var locations = []
+            for (var j = 0; j < countries.length; j++) {
+                if (jsonData[continents[i]][countries[j]].length != 0) {
+                    locations = locations.concat(jsonData[continents[i]][countries[j]]);
+                }
+            }
+            keywords = keywords.concat(locations);
         }
-        keywords = keywords.concat(locations);
     }
     keywords = keywords.concat(continents);
-    // keywords.push('Australia');
     return keywords.join();
 }
 
-function getTweets(jsonData, clientNumber) {
-    var locations = getLocations(jsonData);
+function getTweets(keywordsString, clientNumber, cb) {
+    var locations = keywordsString.toLowerCase();
+    var locationsArray = locations.split(",");
     Twitter.clients[clientNumber].stream('statuses/filter', {
-        track: locations
+        track: keywordsString
     }, function(stream) {
         stream.on('data', function(tweet) {
             if (tweet.user) {
-                var keywords = getKeywords(jsonData, tweet.text);
+                var keywords = getKeywords(locationsArray, tweet.text);
                 if (keywords.length != 0) {
                     var userName = tweet.user.name || "****";
                     var screenName = tweet.user.screen_name || "****";
@@ -39,21 +54,16 @@ function getTweets(jsonData, clientNumber) {
                     var location = tweet.user.location || "****";
                     var retweetCount = tweet.retweet_count;
                     var text = tweet.text || "****";
-                    
-                    if(location.indexOf('Australia') != -1) {
-                        console.log(text)
-                    console.log(keywords)
-                    console.log(location)
-                    }
-                    // cb({
-                    //     userName: userName,
-                    //     screenName: screenName,
-                    //     created: created,
-                    //     location: location,
-                    //     retweetCount: retweetCount,
-                    //     text: text,
-                    //     keywords: keywords
-                    // });
+                    var obj = {
+                        userName: userName,
+                        screenName: screenName,
+                        created: created,
+                        location: location,
+                        retweetCount: retweetCount,
+                        text: text,
+                        keywords: keywords
+                    };
+                    var newTweetArray = analyzeService.analyze(obj, travelWords.list, travelJson, cb);
                 }
             }
         });
@@ -63,9 +73,7 @@ function getTweets(jsonData, clientNumber) {
     });
 }
 
-function getKeywords(jsonData, text) {
-    var locations = getLocations(jsonData).toLowerCase();
-    var locationsArray = locations.split(",");
+function getKeywords(locationsArray, text) {
     var wordsArray = text.split(" ");
     var keywords = [];
     for (var i = 0; i < wordsArray.length; i++) {
@@ -73,10 +81,10 @@ function getKeywords(jsonData, text) {
             if (keywords.indexOf(wordsArray[i].toLowerCase()) == -1) {
                 keywords.push(wordsArray[i].toLowerCase());
             }
-
         }
     }
     return keywords;
 }
 
 exports.getTweets = getTweets;
+exports.getLocations = getLocations;
