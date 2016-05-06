@@ -1,6 +1,7 @@
 sudo apt-get install git
 sudo apt-get install make
-sudo apt-get install g++
+
+
 sudo add-apt-repository ppa:couchdb/stable -y
 sudo apt-get update -y
 sudo apt-get install -V -y couchdb
