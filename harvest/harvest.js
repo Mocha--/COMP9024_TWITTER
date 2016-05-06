@@ -47,4 +47,5 @@ if(instanceNum > totalNum) {
 		var keywordsString = keywordsArray.slice(start, end + 1).join();
 		getTweetsService.getTweets(keywordsString, num, writeDb.insert);
 	}
+	console.log(accountNum + " processes are running!");
 }
