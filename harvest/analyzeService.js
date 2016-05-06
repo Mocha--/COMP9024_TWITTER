@@ -127,6 +127,7 @@ function analyze(tweet, travelWords, jsonData, cb) {
     cld.detect(tweet.text, function(err, result) {
         if (!err && result.languages && result.languages.length > 0) {
             // get language
+            console.log(result.languages)
             var language = result.languages[0].name;
             // analyze tweet from Australian
             var from = locationDetect(tweet, jsonData);
