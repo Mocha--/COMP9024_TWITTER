@@ -75,8 +75,11 @@ function findKeyword(jsonData, keyword) {
                             result.city = keyword;
                             result.overseas = true;
                             return result;
+                        } else {
+                            return result;
                         }
                     }
+                    return result;
                 }
             } else {
                 var states = _.keys(jsonData[continents[i]]);
@@ -111,10 +114,13 @@ function findKeyword(jsonData, keyword) {
                                     result.city = citiesLowerCase[k];
                                     result.overseas = false;
                                     return result;
+                                } else {
+                                    return result;
                                 }
                             }
                         }
                     }
+                    return result;
                 }
             }
         }
