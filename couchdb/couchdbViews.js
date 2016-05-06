@@ -22,19 +22,66 @@ let sample = {
     "overseas": false
 };
 
+// db.insert({
+//     language: 'javascript',
+//     views: {
+//
+//
+//         map: function(doc) {
+//
+//         },
+//         reduce: function(keys, values) {
+//
+//         }
+//     }
+// }, '_design/basedOnTo', function(err, res) {
+//     if (!err) {
+//         console.log(res);
+//     }
+// })
+
+// db.insert({
+//     language: 'javascript',
+//     views: {
+//         overseasVsDomestic: {
+//             map: function(doc) {
+//                 if (doc.overseas) {
+//                     emit('overseas', 1);
+//                 } else {
+//                     emit('domestic', 1);
+//                 }
+//             },
+//             reduce: function(keys, values) {
+//                 return sum(values);
+//             }
+//         },
+//         countryCount: {
+//             map: function(doc) {
+//                 if (doc.to.country) {
+//                     emit(doc.to.country, 1);
+//                 }
+//             },
+//             reduce: function(keys, values) {
+//                 return sum(values);
+//             }
+//         }
+//     }
+// }, '_design/overall', function(err, res) {
+//     if (!err) {
+//         console.log(res);
+//     }
+// })
+
 db.insert({
     language: 'javascript',
     views: {
+        countryWithAttitude: {
+            map: function(doc){
 
-        map: function(doc) {
-
-        },
-        reduce: function(keys, values) {
-
+            },
+            reduce: function(keys, values){
+                
+            }
         }
-    }
-}, '_design/basedOnTo', function(err, res) {
-    if (!err) {
-        console.log(res);
     }
 })
