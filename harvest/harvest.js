@@ -18,14 +18,6 @@ var asia3 = require('./constant/locations/asia3');
 
 var totalNum = process.argv[2];
 var instanceNum = process.argv[3];
-// console.log(totalNum);
-// console.log(typeof totalNum);
-// console.log(instanceNum);
-
-// var fs = require('fs');
-// fs.writeFile('pm2out.txt', totalNum, function(err) {
-//     console.log(err);
-// });
 
 if (instanceNum > totalNum) {
     console.log("totalNum should be greater than instanceNum!");
