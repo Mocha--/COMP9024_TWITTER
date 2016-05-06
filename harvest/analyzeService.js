@@ -64,22 +64,19 @@ function findKeyword(jsonData, keyword) {
                     result.continent = continentsLowerCase[i];
                     result.country = keyword;
                     result.overseas = true;
-                    return result;
                 } else {
                     // city level
                     for (var j = 0; j < countries.length; j++) {
                         if (_.indexOf(convertToLowerCase(jsonData[continents[i]][countries[j]]), keyword) != -1) {
                             // keyword is a city
+                            console.log(keyword)
                             result.continent = continentsLowerCase[i];
                             result.country = countriesLowerCase[j];
                             result.city = keyword;
                             result.overseas = true;
-                            return result;
-                        } else {
-                            return result;
-                        }
+                            break;
+                        } 
                     }
-                    return result;
                 }
             } else {
                 var states = _.keys(jsonData[continents[i]]);
@@ -90,7 +87,6 @@ function findKeyword(jsonData, keyword) {
                     result.country = AUSTRALIA;
                     result.state = keyword;
                     result.overseas = false;
-                    return result;
                 } else {
                     // city level
                     for (var j = 0; j < states.length; j++) {
@@ -103,7 +99,6 @@ function findKeyword(jsonData, keyword) {
                             result.state = statesLowerCase[j];
                             result.city = keyword;
                             result.overseas = false;
-                            return result;
                         } else {
                             for (var k = 0; k < cities.length; k++) {
                                 if (_.indexOf(convertToLowerCase(jsonData[continents[i]][states[j]][cities[k]]), keyword) != -1) {
@@ -113,17 +108,15 @@ function findKeyword(jsonData, keyword) {
                                     result.state = statesLowerCase[j];
                                     result.city = citiesLowerCase[k];
                                     result.overseas = false;
-                                    return result;
-                                } else {
-                                    return result;
+                                    break;
                                 }
                             }
                         }
                     }
-                    return result;
                 }
             }
         }
+        return result;
     }
 }
 
