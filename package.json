@@ -30,6 +30,7 @@
     "lodash": "^4.11.2",
     "nano": "^6.2.0",
     "sentiment": "^1.0.6",
+    "superagent": "^1.8.3",
     "twitter": "^1.2.5"
   }
 }
