@@ -125,7 +125,7 @@ function findKeyword(jsonData, keyword) {
 function analyze(tweet, travelWords, jsonData, cb) {
     var newTweetArray = [];
     cld.detect(tweet.text, function(err, result) {
-        if (!err && result.languages && result.languages.length > 0) {
+        if (!err && result.languages && result.languages.length > 0 && result.languages[0] !== undefined) {
             // get language
             console.log(result.languages)
             var language = result.languages[0].name;
