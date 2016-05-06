@@ -18,7 +18,7 @@ if (myRank > clientsNum) {
     process.exit(1)
 }
 
-const limitNum = 1;
+const limitNum = 1000;
 const targetUrl = 'http://115.146.85.141:5984/twittes/_all_docs';
 const totalDocNum = 36306367;
 
