@@ -8,7 +8,7 @@ let travelJson = require('./constant/locations/travel');
 let nano = require('nano')('http://115.146.85.141:5984');
 let writeDb = nano.use('travel_stats');
 
-const clientsNum = 10;
+const clientsNum = 20;
 const myRank = parseInt(process.argv[2]);
 let processedNum = 0;
 let turns = 0;
