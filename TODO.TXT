@@ -1,8 +1,8 @@
-1. detailed scenario (what to display on front-end)
+1. detailed scenario (what to display on front-end)                  done
 2. download AURIN data and think about how to combine it with our twittes data
 3. front-end implementation
 4. back-end implementation ( REST server)
-5. semantic analysis on twittes data
-6. couchdb mapreduce
+5. semantic analysis on twittes data             done
+6. couchdb mapreduce                             done
 7. automatic, dynamic deployment
 8. report
