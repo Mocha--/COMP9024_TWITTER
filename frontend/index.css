@@ -1,0 +1,81 @@
+body {width: 100%; margin: 0; zoom: 1; height: 100%; top: 0;}
+.cluster {width: 100%; font-family: Helvetica, Arial; overflow: hidden; text-align: center; position: relative;}
+.cluster .content {width: 800px; margin: 0 auto;}
+.cluster .title {font-size: 35px; color: #fff; font-weight: bold; padding-top: 0px; opacity: 0;}
+.cluster .active {display: block;}
+.cluster .hidden {display: none;}
+
+.cluster .background {background: url('background.jpg') 25% 0 no-repeat; position: fixed; top: 0; left: 0; opacity: 0.9; width: 100%; background-size: auto 100%;}
+.cluster .a {position: relative; margin: 0;}
+.cluster .b {position: relative; margin: 0;}
+
+.show {
+  animation-name: appear;
+  -webkit-animation-name: appear;
+  -ms-animation-name: appear;
+  -moz-animation-name: appear;
+  -o-animationname: appear;
+  animation-duration: 1.5s;
+  -webkit-animation-duration: 1.5s;
+  -ms-animation-duration: 1.5s;
+  -moz-animation-duration: 1.5s;
+  -o-animation-duration: 1.5s;
+}
+@keyframes appear {
+  0% {opacity: 0;}
+  100% {opacity: 0.9;}
+}
+@-webkit-keyframes appear {
+  0% {opacity: 0;}
+  100% {opacity: 0.9;}
+}
+@-ms-keyframes appear {
+  0% {opacity: 0;}
+  100% {opacity: 0.9;}
+}
+@-moz-keyframes appear {
+  0% {opacity: 0;}
+  100% {opacity: 0.9;}
+}
+@-o-keyframes appear {
+  0% {opacity: 0;}
+  100% {opacity: 0.9;}
+}
+
+.left-to-center {
+	animation-name: leftToCenter;
+	-webkit-animation-name: leftToCenter;
+	-o-animation-name: leftToCenter;
+	-ms-animation-name: leftToCenter;
+	-moz-animation-name: leftToCenter;
+	animation-duration: 1s;
+  -webkit-animation-duration: 1s;
+  -ms-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  -o-animation-duration: 1s;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+  -o-animation-fill-mode: forwards;
+  -ms-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+}
+@keyframes leftToCenter {
+  0% {padding-top: 0px; opacity: 1;}
+  100% {padding-top: 70px; opacity: 1;}
+}
+@-webkit-keyframes leftToCenter {
+  0% {padding-top: 0px; opacity: 1;}
+  100% {padding-top: 70px; opacity: 1;}
+}
+@-ms-keyframes leftToCenter {
+  0% {padding-top: 0px; opacity: 1;}
+  100% {padding-top: 70px; opacity: 1;}
+}
+@-moz-keyframes leftToCenter {
+  0% {padding-top: 0px; opacity: 1;}
+  100% {padding-top: 70px; opacity: 1;}
+}
+@-o-keyframes leftToCenter {
+  0% {padding-top: 0px; opacity: 1;}
+  100% {padding-top: 70px; opacity: 1;}
+}

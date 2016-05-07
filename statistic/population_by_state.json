@@ -1,0 +1,34 @@
+{
+	"New South Wales":{
+		"population": "7644200",
+		"rank": "1"
+	},
+	"Victoria": {
+		"population": "5966700",
+		"rank": "2"
+	},
+	"Queensland": {
+		"population": "4792900",
+		"rank": "3"
+	},
+	"South Australia": {
+		"population": "1701100",
+		"rank": "4"
+	},
+	"Western Australia": {
+		"population": "2598200",
+		"rank": "5"
+	},
+	"Tasmania": {
+		"population": "517200",
+		"rank": "6"
+	},
+	"Northern Territory": {
+		"population": "244500",
+		"rank": "7"
+	},
+	"Australian Capital Territory": {
+		"population": "392000",
+		"rank": "8"
+	}
+}
