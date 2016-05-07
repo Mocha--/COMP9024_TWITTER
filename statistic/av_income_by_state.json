@@ -1,0 +1,34 @@
+{
+	"Tasmania": {
+		"wage": "$65759",
+		"rank": "8"
+	},
+	"South Australia": {
+		"wage": "$69800",
+		"rank": "7"
+	},
+	"Victoria": {
+		"wage": "$72623",
+		"rank": "6"
+	},
+	"Northern Territory": {
+		"wage": "$75603",
+		"rank": "5"
+	},
+	"Queensland": {
+		"wage": "$75759",
+		"rank": "4"
+	},
+	"New South Wales": {
+		"wage": "$77600",
+		"rank": "3"
+	},
+	"Western Australia": {
+		"wage": "$87001",
+		"rank": "2"
+	},
+	"Capital Territory": {
+		"wage": "$88270",
+		"rank": "1"
+	}
+}
