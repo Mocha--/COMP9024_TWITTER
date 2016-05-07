@@ -25,24 +25,6 @@ let sample = {
 // db.insert({
 //     language: 'javascript',
 //     views: {
-//
-//
-//         map: function(doc) {
-//
-//         },
-//         reduce: function(keys, values) {
-//
-//         }
-//     }
-// }, '_design/basedOnTo', function(err, res) {
-//     if (!err) {
-//         console.log(res);
-//     }
-// })
-
-// db.insert({
-//     language: 'javascript',
-//     views: {
 //         overseasVsDomestic: {
 //             map: function(doc) {
 //                 if (doc.overseas) {
@@ -75,13 +57,19 @@ let sample = {
 db.insert({
     language: 'javascript',
     views: {
-        countryWithAttitude: {
-            map: function(doc){
-
+        overseasVsDomestic: {
+            map: function(doc) {
+                if (doc.from.city) {
+                    emit([doc.from.city, doc.overseas], 1);
+                }
             },
-            reduce: function(keys, values){
-                
+            reduce: function(keys, values) {
+                return sum(values);
             }
         }
     }
-})
+}, '_design/baseOnFrom', function(err, res) {
+    if (!err) {
+        console.log(res);
+    }
+});
