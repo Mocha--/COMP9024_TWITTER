@@ -1,4 +1,4 @@
-body {width: 100%; margin: 0; zoom: 1; height: 100%; top: 0;}
+body {width: 100%; margin: 0; zoom: 1; height: 100%; top: 0; overflow: hidden;}
 .cluster {width: 100%; font-family: Helvetica, Arial; overflow: hidden; text-align: center; position: relative;}
 .cluster .content {width: 70%; max-width: 1200px; margin: 0 auto;}
 .cluster .currentData {position: fixed; font-size: 20px; top: 20px; left: 50px; color: #fff;}

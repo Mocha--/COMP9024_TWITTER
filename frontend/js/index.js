@@ -44,12 +44,22 @@ function sectionChange(e) {
 function scrollFunc(change) {
     isFinished = false;
     index = index + change;
-        $('html,body').animate({ scrollTop: sections[index].offsetTop }, 600, function () {
-            $(sections[index]).removeClass('hidden');
-            $(sections[index]).find('.title').addClass('left-to-center'); 
+        $('html,body').animate({ scrollTop: sections[index].offsetTop }, 600, function () {         
+            $(sections[index]).find('.charts').removeClass('hidden');
+            $(sections[index]).find('.title').addClass('left-to-center');
             loadchart(index);
-            $(sections[index - change]).addClass('hidden');
+            $(sections[index - change]).find('.charts').addClass('hidden');
             isFinished = true;
+            if(index === sections.length - 1) {
+                $('.cluster .nextPage').addClass('hidden');
+            }
+            else if(index === 0) {
+                $('.cluster .previousPage').addClass('hidden');
+            }
+            else {
+                $('.cluster .nextPage').removeClass('hidden');
+                $('.cluster .previousPage').removeClass('hidden');
+            }
         });
     $(sections[index]).find('.title').removeClass('left-to-center');
 }
@@ -60,50 +70,55 @@ function scrollFunc(change) {
 function loadchart(index) {  
 
     if(index === 0) {
-        $('#pie-chart').highcharts({
-            chart: {
-                // backgroundColor: "transparent",
-                plotBackgroundColor: null,
-                plotBorderWidth: null,
-                plotShadow: false,
-                type: 'pie'
-            },
-            title: {text: 'Browser market shares. January, 2015 to May, 2015'},
-            tooltip: {
-                pointFormat: '<b>{point.name}: </b><b>{point.percentage:.1f}%</b>', 
-                style: {fontSize: '18px'},          
-            },
-            plotOptions: {
-                pie: {
-                    allowPointSelect: true,
-                    cursor: 'pointer',
-                    dataLabels: {
-                        enabled: true,
-                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                        style: {
-                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'white',
-                            fontSize: '18px',
-                        },
-                        connectorColor: 'silver'
+        $.getJSON("http://localhost:8080/overall/overseasVsDomestic",function(result) {
+            var data = [{'name': 'domestic', 'y': 45}, {'name': 'overseas', 'y': 56}];
+            $('#pie-chart').highcharts({
+                chart: {
+                    // backgroundColor: "transparent",
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {text: 'Browser market shares. January, 2015 to May, 2015'},
+                tooltip: {
+                    pointFormat: '<b>{point.name}: </b><b>{point.percentage:.1f}%</b>', 
+                    style: {fontSize: '18px'},          
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'white',
+                                fontSize: '18px',
+                            },
+                            connectorColor: 'silver'
+                        }
                     }
-                }
-            },
-            series: [{
-                name: 'Brands',
-                data: [
-                    { name: 'Domestic', y: 56.33 },
-                    {
-                        name: 'Overseas',
-                        y: 43.67,
-                        sliced: true,
-                        selected: true
-                    },
-                ]
-            }]
+                },
+                series: [{
+                    name: 'Brands',
+                    data: data,
+                }]
+            });
         });
     }
 
     if(index === 1) {
+        var categories = [{"name": "Asia", "countries": ["China", "Korea"], "positive": 45, "negative": 55}, {"name": "Europe", "countries": ["UK", "Italy"], "positive": 45, "negative": 55}];
+        var ca = eval(categories);
+        var positive = [];
+        var negative = [];
+        var continents = [];
+        for(var i = 0; i < categories.length; i ++) {
+            positive.push(categories[i].positive);
+            negative.push(categories[i].negative);
+            continents.push(categories[i].name);
+        }
         $('#overseas').highcharts({
             chart: {
                 type: 'column'
@@ -112,7 +127,7 @@ function loadchart(index) {
                 text: 'Stacked column chart'
             },
             xAxis: {
-                categories: ['Asia', 'Europe', 'North America', 'Oceania', 'South America'],
+                categories: continents,
                 style: {fontSize: '18px'},
             },
             yAxis: {
@@ -157,14 +172,11 @@ function loadchart(index) {
                 }
             },
             series: [{
-                name: 'John',
-                data: [5, 3, 4, 7, 2]
+                name: 'positive',
+                data: positive
             }, {
-                name: 'Jane',
-                data: [2, 2, 3, 2, 1]
-            }, {
-                name: 'Joe',
-                data: [3, 4, 4, 2, 5]
+                name: 'negative',
+                data: negative
             }]
         });
     }
@@ -241,7 +253,10 @@ $(document).ready(function() {
     $('.cluster .background').css({'height': height + 50 + 'px'});
     $('.cluster .section').css({'height': height + 'px'});
     loadchart(index);
-    $('.cluster .previousPage a').click(function() {
+    $('.cluster .previousPage').addClass('hidden');
+});
+
+$('.cluster .previousPage a').click(function() {
         if(index > 0)
             scrollFunc(-1);
     });
@@ -249,7 +264,6 @@ $(document).ready(function() {
         if(index < sections.length - 1)
             scrollFunc(1);
     });
-});
 
 
 
