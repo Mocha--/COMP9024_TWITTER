@@ -1,11 +1,19 @@
 $(document).ready(function() {
 	var height = window.screen.availHeight;
-	$('.cluster .background').css({'height': height + 150 + 'px'});
+	$('.cluster .background').css({'height': height + 50 + 'px'});
 	$('.cluster .section').css({'height': height + 'px'});
     loadchart(index);
 });
 
-// wheel
+//*************************** Data on the top ********************************
+var data = 0;
+$('.cluster .currentData').addClass('currentData').attr('data-content', data);
+setInterval(function() {
+    data = data + 13;
+    $('.cluster .currentData').addClass('currentData').attr('data-content', data);
+}, 5000);
+
+//*************************** wheel ********************************
 var sections = [];
 sections = document.getElementsByClassName("section");
  // console.log(sections);
@@ -18,53 +26,41 @@ if (document.attachEvent) //if IE (and Opera depending on user setting)
 else if (document.addEventListener) //WC3 browsers
     document.addEventListener(mousewheelevt, sectionChange, false);
 
+var isFinished = true;
 
 function sectionChange(e) {
 	var evt = window.event || e;
 	var delta = evt.detail? evt.detail * (-120) : evt.wheelDelta;
-	if(index < sections.length - 1 && delta <= -120) {
-		index = index + 1;
-		$('html,body').animate({ scrollTop: sections[index].offsetTop }, 600, function () {
-            $(sections[index]).removeClass('hidden');
-            $(sections[index]).find('.title').addClass('left-to-center'); 
-            loadchart(index);
-            $(sections[index - 1]).addClass('hidden');           
-    });
-    $(sections[index]).find('.title').removeClass('left-to-center');
-	}
-	if(index > 0 && delta >= 120) {
-		index = index - 1;
-		$('html,body').animate({ scrollTop: sections[index].offsetTop }, 600, function () {
-            $(sections[index]).removeClass('hidden');
-            $(sections[index]).find('.title').addClass('left-to-center'); 
-            loadchart(index);
-            $(sections[index + 1]).addClass('hidden');         
-    });
-    $(sections[index]).find('.title').removeClass('left-to-center');
-	}
+    if(isFinished) {
+        if(index < sections.length - 1 && delta <= -180) {
+        scrollFunc(1);           
+        }    
+        if(index > 0 && delta >= 180) {
+            scrollFunc(-1);         
+        }
+    }
+	
 	if (evt.preventDefault) //disable default wheel action of scrolling page
         evt.preventDefault();
     else
         return false;
 }
 
+function scrollFunc(change) {
+    isFinished = false;
+    index = index + change;
+        $('html,body').animate({ scrollTop: sections[index].offsetTop }, 600, function () {
+            $(sections[index]).removeClass('hidden');
+            $(sections[index]).find('.title').addClass('left-to-center'); 
+            loadchart(index);
+            $(sections[index - change]).addClass('hidden');
+            isFinished = true;
+        });
+    $(sections[index]).find('.title').removeClass('left-to-center');
+}
 
-//charts
 
-// Radialize the colors
-// Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
-//     return {
-//         radialGradient: {
-//             cx: 0.5,
-//             cy: 0.3,
-//             r: 0.7
-//         },
-//         stops: [
-//             [0, color],
-//             [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
-//         ]
-//     };
-// });
+//****************************** charts *********************************
 
 function loadchart(index) {  
 
@@ -114,68 +110,134 @@ function loadchart(index) {
 
     if(index === 1) {
         $('#overseas').highcharts({
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'Stacked column chart'
-        },
-        xAxis: {
-            categories: ['Apples', 'Oranges', 'Pears', 'Grapes', 'Bananas'],
-            style: {fontSize: '18px'},
-        },
-        yAxis: {
-            min: 0,
-            title: {
-                text: 'Total fruit consumption'
+            chart: {
+                type: 'column'
             },
-            stackLabels: {
-                enabled: true,
-                style: {
-                    fontWeight: 'bold',
-                    fontSize: '18px',
-                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
-                }
-            }
-        },
-        legend: {
-            align: 'right',
-            x: -30,
-            verticalAlign: 'top',
-            y: 25,
-            floating: true,
-            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
-            borderColor: '#CCC',
-            borderWidth: 1,
-            shadow: false
-        },
-        tooltip: {
-            headerFormat: '<b>{point.x}</b><br/>',
-            pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
-        },
-        plotOptions: {
-            column: {
-                stacking: 'normal',
-                dataLabels: {
+            title: {
+                text: 'Stacked column chart'
+            },
+            xAxis: {
+                categories: ['Asia', 'Europe', 'North America', 'Oceania', 'South America'],
+                style: {fontSize: '18px'},
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Total fruit consumption'
+                },
+                stackLabels: {
                     enabled: true,
-                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
                     style: {
-                        textShadow: '0 0 3px black'
+                        fontWeight: 'bold',
+                        fontSize: '18px',
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
                     }
                 }
-            }
-        },
-        series: [{
-            name: 'John',
-            data: [5, 3, 4, 7, 2]
-        }, {
-            name: 'Jane',
-            data: [2, 2, 3, 2, 1]
-        }, {
-            name: 'Joe',
-            data: [3, 4, 4, 2, 5]
-        }]
-    });
+            },
+            legend: {
+                align: 'right',
+                x: -30,
+                verticalAlign: 'top',
+                y: 25,
+                floating: true,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false
+            },
+            tooltip: {
+                headerFormat: '<b>{point.x}</b><br/>',
+                pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: true,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                        style: {
+                            textShadow: '0 0 3px black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'John',
+                data: [5, 3, 4, 7, 2]
+            }, {
+                name: 'Jane',
+                data: [2, 2, 3, 2, 1]
+            }, {
+                name: 'Joe',
+                data: [3, 4, 4, 2, 5]
+            }]
+        });
+    }
+
+    if(index === 3) {
+        $('#travelToOverseas').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Stacked column chart'
+            },
+            xAxis: {
+                categories: ['Melbourne', 'Sydney', 'Brisbane', 'Adalaide', 'Perth'],
+                style: {fontSize: '18px'},
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Total fruit consumption'
+                },
+                stackLabels: {
+                    enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        fontSize: '18px',
+                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                    }
+                }
+            },
+            legend: {
+                align: 'right',
+                x: -30,
+                verticalAlign: 'top',
+                y: 25,
+                floating: true,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                borderColor: '#CCC',
+                borderWidth: 1,
+                shadow: false
+            },
+            tooltip: {
+                headerFormat: '<b>{point.x}</b><br/>',
+                pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: true,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                        style: {
+                            textShadow: '0 0 3px black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'John',
+                data: [5, 3, 4, 7, 2]
+            }, {
+                name: 'Jane',
+                data: [2, 2, 3, 2, 1]
+            }, {
+                name: 'Joe',
+                data: [3, 4, 4, 2, 5]
+            }]
+        });
     }
 }
 
