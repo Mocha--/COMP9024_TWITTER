@@ -27,6 +27,10 @@ const BASEONTO = 'baseOnTo';
 	9. overseas continent with attitude: localhost:8080/baseOnTo/overseasContinentWithAttitude (graph 2)
 **/
 
+function capitalizeFirstLetter(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
 function getData(design, view, cb) {
     db.view(design, view, { group: true }, function(err, body) {
         if (!err) {
@@ -44,7 +48,7 @@ function addCode(cb) {
         	var newData = [];
         	rawData.forEach(function (data) {
         		var obj = {};
-        		obj['name'] = data.key;
+        		obj['name'] = capitalizeFirstLetter(data.key);
         		obj['value'] = data.value;
         		countryCode.code.forEach(function (code) {
         			if(code.name.toLowerCase() === data.key) {
