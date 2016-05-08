@@ -17,6 +17,7 @@ function getData(design, view, cb) {
     });
 }
 
+// example: http://localhost:8080/overall/overseasVsDomestic
 // overall
 app.get('/overall/overseasVsDomestic', function (req, res) {
 	var cb = res.send.bind(res);
