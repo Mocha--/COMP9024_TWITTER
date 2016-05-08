@@ -3,6 +3,9 @@ var app = express();
 var nano = require('nano')('http://115.146.85.141:5984');
 var db = nano.use('travel_stats');
 var countryCode = require('./countryCode');
+var cors = require('cors');
+
+app.use(cors());
 
 const OVERALL = 'overall';
 const BASEONFROM = 'baseOnFrom';
