@@ -4,18 +4,6 @@ var readDb = nano.use('twittes');
 var getTweetsService = require('./getTweets/getTweetsService');
 var travelJson = require('./constant/locations/travel');
 
-var australia1 = require('./constant/locations/australia1');
-var australia2 = require('./constant/locations/australia2');
-var europe = require('./constant/locations/europe');
-var northAmerica = require('./constant/locations/northAmerica');
-var oceania = require('./constant/locations/oceania');
-var southAmerica = require('./constant/locations/southAmerica');
-var africa1 = require('./constant/locations/africa1');
-var africa2 = require('./constant/locations/africa2');
-var asia1 = require('./constant/locations/asia1');
-var asia2 = require('./constant/locations/asia2');
-var asia3 = require('./constant/locations/asia3');
-
 var totalNum = process.argv[2];
 var instanceNum = process.argv[3];
 
