@@ -1,0 +1,101 @@
+body {width: 100%; margin: 0; zoom: 1; height: 100%; top: 0;}
+.cluster {width: 100%; font-family: Helvetica, Arial; overflow: hidden; text-align: center; position: relative;}
+.cluster .content {width: 70%; max-width: 1200px; margin: 0 auto;}
+.cluster .currentData {position: fixed; font-size: 20px; top: 20px; left: 50px; color: #fff;}
+.cluster .currentData:after {display: inline-block; content: attr(data-content);}
+.cluster .title {font-size: 35px; color: #fff; font-weight: bold; padding-top: 0; opacity: 0;}
+.cluster .section .charts {padding-top: 6%;}
+.cluster .charts b {font-size: 18px;}
+.cluster .active {display: block;}
+.cluster .hidden {display: none;}
+.cluster .previousPage a {background: url(previous.png) 50% 0 no-repeat; width: 60px; height: 60px; background-size: 50px 50px; position: fixed; bottom: 80px; right: 30px; cursor: pointer; text-decoration: none;}
+.cluster .previousPage a:hover {opacity: 0.7;}
+.cluster .nextPage a {background: url(next.png) 50% 0 no-repeat; width: 60px; height: 60px; background-size: 50px 50px; position: fixed; bottom: 20px; right: 30px; cursor: pointer; text-decoration: none;}
+.cluster .nextPage a:hover {opacity: 0.7;}
+
+.cluster .background {
+  /*background: url('background.jpg') 25% 0 no-repeat; */
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%;  
+  FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#b8c4cb,endColorStr=red); /*IE 6 7 8*/ 
+  background: -ms-linear-gradient(top, rgba(1, 8, 56, 0.82),  #000000); /* IE 10 */
+  background: -moz-linear-gradient(top, rgba(1, 8, 56, 0.82), #000000); /* Mozila */
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%,from(rgba(1, 8, 56, 0.82)), to(#000000)); /* Chrome */
+  background: -webkit-linear-gradient(top, rgba(1, 8, 56, 0.82), #000000); /*Safari5.1 Chrome 10+*/
+  background: -o-linear-gradient(top, rgba(1, 8, 56, 0.82), #000000);  /*Opera 11.10+*/
+  background-size: auto 100%;
+}
+.cluster .section {position: relative; margin: 0;}
+
+.show {
+  animation-name: appear;
+  -webkit-animation-name: appear;
+  -ms-animation-name: appear;
+  -moz-animation-name: appear;
+  -o-animationname: appear;
+  animation-duration: 1.5s;
+  -webkit-animation-duration: 1.5s;
+  -ms-animation-duration: 1.5s;
+  -moz-animation-duration: 1.5s;
+  -o-animation-duration: 1.5s;
+}
+@keyframes appear {
+  0% {opacity: 0;}
+  100% {opacity: 0.9;}
+}
+@-webkit-keyframes appear {
+  0% {opacity: 0;}
+  100% {opacity: 0.9;}
+}
+@-ms-keyframes appear {
+  0% {opacity: 0;}
+  100% {opacity: 0.9;}
+}
+@-moz-keyframes appear {
+  0% {opacity: 0;}
+  100% {opacity: 0.9;}
+}
+@-o-keyframes appear {
+  0% {opacity: 0;}
+  100% {opacity: 0.9;}
+}
+
+.left-to-center {
+	animation-name: leftToCenter;
+	-webkit-animation-name: leftToCenter;
+	-o-animation-name: leftToCenter;
+	-ms-animation-name: leftToCenter;
+	-moz-animation-name: leftToCenter;
+	animation-duration: 1s;
+  -webkit-animation-duration: 1s;
+  -ms-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  -o-animation-duration: 1s;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+  -o-animation-fill-mode: forwards;
+  -ms-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+}
+@keyframes leftToCenter {
+  0% {padding-top: 0px; opacity: 1;}
+  100% {padding-top: 8%; opacity: 1;}
+}
+@-webkit-keyframes leftToCenter {
+  0% {padding-top: 0px; opacity: 1;}
+  100% {padding-top: 8%; opacity: 1;}
+}
+@-ms-keyframes leftToCenter {
+  0% {padding-top: 0px; opacity: 1;}
+  100% {padding-top: 8%; opacity: 1;}
+}
+@-moz-keyframes leftToCenter {
+  0% {padding-top: 0px; opacity: 1;}
+  100% {padding-top: 8%; opacity: 1;}
+}
+@-o-keyframes leftToCenter {
+  0% {padding-top: 0px; opacity: 1;}
+  100% {padding-top: 8%; opacity: 1;}
+}
