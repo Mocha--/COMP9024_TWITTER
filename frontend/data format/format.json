@@ -1,0 +1,21 @@
+// chart 1
+[{"name": "domestic", "y": 45}, {"name": "overseas", "y": 56}]
+
+// chart 2
+// For continents, requires the ranked names, positive number, negative number, for each continent, requires ranked countries (first 5) and their percentage
+[{"name": "Asia", "countries": [{"name":"China", "percentage": "0.55"}, {"name":"Korea", "percentage": "0.33"}, {"..."}]
+
+// chart 4 ranked cities with population of domestic and overseas
+[{"name": "Sydney", "domestic": 444, "overseas": 443}, {"..."}]
+
+// chart 5 similar to chart 2
+// ranked states, positive number, negative number, for each state, ranked cities (first 5) and their percentages
+[{"name": "Victoria", "cities": [{"name":"melbourne", "percentage": "0.55"}, {"name":"geelong", "percentage": "0.33"}, {"..."}]
+
+// chart 6 requires states name, and the population of melbourne and sydney that travel to the state
+[{"state": "NSW", "melbourne": 89, "Sydney": 79}, {"..."}]
+
+// chart 7 requires states name, income of each state, number of travelers of each state
+[{"state": "NSW", "Income": 45329, "number": 56}, {"..."}]
+
+
