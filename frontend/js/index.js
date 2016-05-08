@@ -1,9 +1,4 @@
-$(document).ready(function() {
-	var height = window.screen.availHeight;
-	$('.cluster .background').css({'height': height + 50 + 'px'});
-	$('.cluster .section').css({'height': height + 'px'});
-    loadchart(index);
-});
+
 
 //*************************** Data on the top ********************************
 var data = 0;
@@ -33,7 +28,7 @@ function sectionChange(e) {
 	var delta = evt.detail? evt.detail * (-120) : evt.wheelDelta;
     if(isFinished) {
         if(index < sections.length - 1 && delta <= -180) {
-        scrollFunc(1);           
+            scrollFunc(1);           
         }    
         if(index > 0 && delta >= 180) {
             scrollFunc(-1);         
@@ -240,6 +235,21 @@ function loadchart(index) {
         });
     }
 }
+//******************** Initialization **************************
+$(document).ready(function() {
+    var height = window.screen.availHeight;
+    $('.cluster .background').css({'height': height + 50 + 'px'});
+    $('.cluster .section').css({'height': height + 'px'});
+    loadchart(index);
+    $('.cluster .previousPage a').click(function() {
+        if(index > 0)
+            scrollFunc(-1);
+    });
+    $('.cluster .nextPage a').click(function() {
+        if(index < sections.length - 1)
+            scrollFunc(1);
+    });
+});
 
 
 
