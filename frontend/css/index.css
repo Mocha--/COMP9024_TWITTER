@@ -14,17 +14,11 @@ body {width: 100%; margin: 0; zoom: 1; height: 100%; top: 0; overflow: hidden;}
 .cluster .nextPage a:hover {opacity: 0.7;}
 
 .cluster .background {
-  /*background: url('background.jpg') 25% 0 no-repeat; */
+  background: url('bg.jpeg') 50% 0 no-repeat; 
   position: fixed; 
   top: 0; 
   left: 0; 
   width: 100%;  
-  FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#b8c4cb,endColorStr=red); /*IE 6 7 8*/ 
-  background: -ms-linear-gradient(top, rgba(1, 8, 56, 0.82),  #000000); /* IE 10 */
-  background: -moz-linear-gradient(top, rgba(1, 8, 56, 0.82), #000000); /* Mozila */
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%,from(rgba(1, 8, 56, 0.82)), to(#000000)); /* Chrome */
-  background: -webkit-linear-gradient(top, rgba(1, 8, 56, 0.82), #000000); /*Safari5.1 Chrome 10+*/
-  background: -o-linear-gradient(top, rgba(1, 8, 56, 0.82), #000000);  /*Opera 11.10+*/
   background-size: auto 100%;
 }
 .cluster .section {position: relative; margin: 0;}
