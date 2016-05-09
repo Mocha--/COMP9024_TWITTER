@@ -70,7 +70,7 @@ function scrollFunc(change) {
 function loadchart(index) {  
 
     if(index === 0) {
-        $.getJSON("http://localhost:8080/overall/overseasVsDomestic",function(result) {
+       // $.getJSON("http://localhost:8080/overall/overseasVsDomestic",function(result) {
             var data = [{'name': 'domestic', 'y': 45}, {'name': 'overseas', 'y': 56}];
             $('#pie-chart').highcharts({
                 chart: {
@@ -93,10 +93,10 @@ function loadchart(index) {
                             enabled: true,
                             format: '<b>{point.name}</b>: {point.percentage:.1f} %',
                             style: {
-                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'white',
+                                color: '#fff',
                                 fontSize: '18px',
                             },
-                            connectorColor: 'silver'
+                            connectorColor: '#fff'
                         }
                     }
                 },
@@ -105,7 +105,7 @@ function loadchart(index) {
                     data: data,
                 }]
             });
-        });
+       // });
     }
 
     if(index === 1) {
@@ -128,19 +128,34 @@ function loadchart(index) {
             },
             xAxis: {
                 categories: continents,
-                style: {fontSize: '18px'},
+                labels: {
+                    style: {
+                        color: '#fff',
+                        fontSize:'18px'
+                    }
+                }
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Total fruit consumption'
+                    text: 'Population',
+                    style: {
+                        color: '#fff',
+                        fontSize: '20px'
+                    }
+                },
+                labels: {
+                    style: {
+                        color: '#fff',
+                        fontSize:'18px'
+                    }
                 },
                 stackLabels: {
                     enabled: true,
                     style: {
                         fontWeight: 'bold',
-                        fontSize: '18px',
-                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                        color: '#fff',
+                        fontSize: '16px',
                     }
                 }
             },
@@ -152,12 +167,18 @@ function loadchart(index) {
                 floating: true,
                 backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
                 borderColor: '#CCC',
-                borderWidth: 1,
-                shadow: false
+                borderWidth: 0,
+                shadow: false,
             },
             tooltip: {
                 headerFormat: '<b>{point.x}</b><br/>',
-                pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+                pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}',
+                labels: {
+                    style: {
+                        color: '#fff',
+                        fontSize:'16px'
+                    }
+                }
             },
             plotOptions: {
                 column: {
@@ -166,7 +187,8 @@ function loadchart(index) {
                         enabled: true,
                         color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
                         style: {
-                            textShadow: '0 0 3px black'
+                            textShadow: '0 0 3px white',
+                            fontSize: '15px'
                         }
                     }
                 }
@@ -187,23 +209,39 @@ function loadchart(index) {
                 type: 'column'
             },
             title: {
-                text: 'Stacked column chart'
+                text: 'Stacked column chart',
             },
             xAxis: {
                 categories: ['Melbourne', 'Sydney', 'Brisbane', 'Adalaide', 'Perth'],
-                style: {fontSize: '18px'},
+                labels: {
+                    style: {
+                        color: '#fff',
+                        fontSize:'18px'
+                    }
+                },
             },
             yAxis: {
                 min: 0,
                 title: {
-                    text: 'Total fruit consumption'
+                    text: 'Population',
+                    style: {
+                        color: '#fff',
+                        fontSize: '20px'
+                    }
+
+                },
+                labels: {
+                    style: {
+                        color: '#fff',
+                        fontSize:'18px'
+                    }
                 },
                 stackLabels: {
                     enabled: true,
                     style: {
                         fontWeight: 'bold',
-                        fontSize: '18px',
-                        color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                        color: '#fff',
+                        fontSize: '16px'
                     }
                 }
             },
@@ -215,7 +253,7 @@ function loadchart(index) {
                 floating: true,
                 backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
                 borderColor: '#CCC',
-                borderWidth: 1,
+                borderWidth: 0,
                 shadow: false
             },
             tooltip: {
@@ -229,7 +267,8 @@ function loadchart(index) {
                         enabled: true,
                         color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
                         style: {
-                            textShadow: '0 0 3px black'
+                            textShadow: '0 0 3px white',
+                            fontSize: '15px'
                         }
                     }
                 }
@@ -246,6 +285,263 @@ function loadchart(index) {
             }]
         });
     }
+
+    if(index === 4) {
+        var categories = [{"name": "Asia", "countries": ["China", "Korea"], "positive": 45, "negative": 55}, {"name": "Europe", "countries": ["UK", "Italy"], "positive": 45, "negative": 55}];
+        var ca = eval(categories);
+        var positive = [];
+        var negative = [];
+        var continents = [];
+        for(var i = 0; i < categories.length; i ++) {
+            positive.push(categories[i].positive);
+            negative.push(categories[i].negative);
+            continents.push(categories[i].name);
+        }
+        $('#domesticFrom').highcharts({
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Stacked column chart'
+            },
+            xAxis: {
+                categories: continents,
+                labels: {
+                    style: {
+                        color: '#fff',
+                        fontSize:'18px'
+                    }
+                },
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Population',
+                    style: {
+                        color: '#fff',
+                        fontSize:'20px'
+                    }
+                },
+                labels: {
+                    style: {
+                        color: '#fff',
+                        fontSize:'18px'
+                    }
+                },
+                stackLabels: {
+                    enabled: true,
+                    style: {
+                        fontWeight: 'bold',
+                        fontSize: '16px',
+                        color: '#fff'
+                    }
+                }
+            },
+            legend: {
+                align: 'right',
+                x: -30,
+                verticalAlign: 'top',
+                y: 25,
+                floating: true,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                borderColor: '#CCC',
+                borderWidth: 0,
+                shadow: false
+            },
+            tooltip: {
+                headerFormat: '<b>{point.x}</b><br/>',
+                pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal',
+                    dataLabels: {
+                        enabled: true,
+                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'black',
+                        style: {
+                            textShadow: '0 0 3px white',
+                            fontSize: '15px'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: 'positive',
+                data: positive
+            }, {
+                name: 'negative',
+                data: negative
+            }]
+        });
+    }//
+
+    if(index === 5) {
+        $('#melbourneSydney').highcharts({
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Population pyramid for Germany, 2015'
+            },
+            subtitle: {
+                text: 'Source: <a href="http://populationpyramid.net/germany/2015/">Population Pyramids of the World from 1950 to 2100</a>'
+            },
+            xAxis: [{
+                categories: categories,
+                reversed: false,
+                labels: {
+                    step: 1,
+                    style: {
+                        color: '#fff',
+                        fontSize:'18px'
+                    }
+                }
+            }, { // mirror axis on right side
+                opposite: true,
+                reversed: false,
+                categories: categories,
+                linkedTo: 0,
+                labels: {
+                    step: 1,
+                    style: {
+                        color: '#fff',
+                        fontSize:'18px'
+                    }
+                }
+            }],
+            yAxis: {
+                title: {
+                    text: null
+                },
+                labels: {
+                    formatter: function () {
+                        return Math.abs(this.value) + '%';
+                    },
+                    style: {
+                        color: '#fff',
+                        fontSize:'18px'
+                    }
+                }
+            },
+            legend: {
+                itemStyle: {
+                 font: '18px Unica One, sans-serif',
+                 color: '#fff'
+              },
+            },
+            plotOptions: {
+                series: {
+                    stacking: 'normal'
+                }
+            },
+
+            tooltip: {
+                formatter: function () {
+                    return '<b>' + this.series.name + ', age ' + this.point.category + '</b><br/>' +
+                        'Population: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);
+                }
+            },
+
+            series: [{
+                name: 'Male',
+                data: [-2.2, -2.2, -2.3, -2.5, -2.7, -3.1, -3.2,
+                    -3.0, -3.2, -4.3, -4.4, -3.6, -3.1, -2.4,
+                    -2.5, -2.3, -1.2, -0.6, -0.2, -0.0, -0.0]
+            }, {
+                name: 'Female',
+                data: [2.1, 2.0, 2.2, 2.4, 2.6, 3.0, 3.1, 2.9,
+                    3.1, 4.1, 4.3, 3.6, 3.4, 2.6, 2.9, 2.9,
+                    1.8, 1.2, 0.6, 0.1, 0.0]
+            }]
+        });
+    }//
+
+    if(index === 6) {
+        $('#travelerIncome').highcharts({
+            chart: {
+                zoomType: 'xy'
+            },
+            title: {
+                text: 'Average Monthly Temperature and Rainfall in Tokyo'
+            },
+            subtitle: {
+                text: 'Source: WorldClimate.com'
+            },
+            xAxis: [{
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+                    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                crosshair: true,
+                labels: {
+                    style: {
+                        color: '#fff',
+                        fontSize:'18px'
+                    }
+                }
+            }],
+            yAxis: [{ // Primary yAxis
+                labels: {
+                    style: {
+                        color: Highcharts.getOptions().colors[1],
+                        fontSize:'18px'
+                    }
+                },
+                title: {
+                    text: 'Population',
+                    style: {
+                        color: Highcharts.getOptions().colors[1],
+                        fontSize:'20px'
+                    }
+                }
+            }, { // Secondary yAxis
+                title: {
+                    text: 'Average Income (AUD/Per year)',
+                    style: {
+                        color: Highcharts.getOptions().colors[0],
+                        fontSize:'20px'
+                    }
+                },
+                labels: {
+                    format: '{value} mm',
+                    style: {
+                        color: Highcharts.getOptions().colors[0],
+                        fontSize: '18px'
+                    }
+                },
+                opposite: true
+            }],
+            tooltip: {
+                shared: true
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'left',
+                x: 120,
+                verticalAlign: 'top',
+                y: 100,
+                floating: true,
+                backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
+            },
+            series: [{
+                name: 'Population',
+                type: 'column',
+                yAxis: 1,
+                data: [49.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4],
+                tooltip: {
+                    valueSuffix: ' mm'
+                }
+
+            }, {
+                name: 'Average Income',
+                type: 'spline',
+                data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2, 26.5, 23.3, 18.3, 13.9, 9.6],
+                tooltip: {
+                    valueSuffix: '°C'
+                }
+            }]
+        });
+    }//
+
+
 }
 //******************** Initialization **************************
 $(document).ready(function() {

@@ -1,11 +1,12 @@
-body {width: 100%; margin: 0; zoom: 1; height: 100%; top: 0; overflow: hidden;}
-.cluster {width: 100%; font-family: Helvetica, Arial; overflow: hidden; text-align: center; position: relative;}
-.cluster .content {width: 70%; max-width: 1200px; margin: 0 auto;}
+body {width: 100%; margin: 0; zoom: 1; height: 100%; top: 0; overflow: hidden; font-family: Unica One, sans-serif;}
+.cluster {width: 100%; overflow: hidden; text-align: center; position: relative;}
+.cluster .content {width: 70%; max-width: 1200px; margin: 0 auto; height: 100%;}
 .cluster .currentData {position: fixed; font-size: 20px; top: 20px; left: 50px; color: #fff;}
 .cluster .currentData:after {display: inline-block; content: attr(data-content);}
 .cluster .title {font-size: 35px; color: #fff; font-weight: bold; padding-top: 0; opacity: 0;}
-.cluster .section .charts {padding-top: 6%;}
-.cluster .charts b {font-size: 18px;}
+.cluster .section .charts {padding-top: 6%; height: 60%;}
+.cluster .section .charts>div { height: 100%;}
+.cluster .section .charts b {font-size: 18px;}
 .cluster .active {display: block;}
 .cluster .hidden {display: none;}
 .cluster .previousPage a {background: url(previous.png) 50% 0 no-repeat; width: 60px; height: 60px; background-size: 50px 50px; position: fixed; bottom: 80px; right: 30px; cursor: pointer; text-decoration: none;}
@@ -75,21 +76,21 @@ body {width: 100%; margin: 0; zoom: 1; height: 100%; top: 0; overflow: hidden;}
 }
 @keyframes leftToCenter {
   0% {padding-top: 0px; opacity: 1;}
-  100% {padding-top: 8%; opacity: 1;}
+  100% {padding-top: 10%; opacity: 1;}
 }
 @-webkit-keyframes leftToCenter {
   0% {padding-top: 0px; opacity: 1;}
-  100% {padding-top: 8%; opacity: 1;}
+  100% {padding-top: 10%; opacity: 1;}
 }
 @-ms-keyframes leftToCenter {
   0% {padding-top: 0px; opacity: 1;}
-  100% {padding-top: 8%; opacity: 1;}
+  100% {padding-top: 10%; opacity: 1;}
 }
 @-moz-keyframes leftToCenter {
   0% {padding-top: 0px; opacity: 1;}
-  100% {padding-top: 8%; opacity: 1;}
+  100% {padding-top: 10%; opacity: 1;}
 }
 @-o-keyframes leftToCenter {
   0% {padding-top: 0px; opacity: 1;}
-  100% {padding-top: 8%; opacity: 1;}
+  100% {padding-top: 10%; opacity: 1;}
 }
