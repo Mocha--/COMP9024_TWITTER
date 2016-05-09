@@ -23,6 +23,8 @@ else if (document.addEventListener) //WC3 browsers
 
 var isFinished = true;
 
+var requestSent = false;
+
 function sectionChange(e) {
 	var evt = window.event || e;
 	var delta = evt.detail? evt.detail * (-120) : evt.wheelDelta;
@@ -42,13 +44,18 @@ function sectionChange(e) {
 }
 
 function scrollFunc(change) {
+    console.log(1);
     isFinished = false;
     index = index + change;
-        $('html,body').animate({ scrollTop: sections[index].offsetTop }, 600, function () {         
-            $(sections[index]).find('.charts').removeClass('hidden');
-            $(sections[index]).find('.title').addClass('left-to-center');
-            loadchart(index);
-            $(sections[index - change]).find('.charts').addClass('hidden');
+        $('html,body').animate({ scrollTop: sections[index].offsetTop }, 600, function () { 
+            if(requestSent) return;
+            $(sections[index]).find('.charts').removeClass('hidden');      
+            $(sections[index]).find('.title').addClass('left-to-center'); 
+            if(!requestSent) {
+                requestSent = true;
+                loadchart(index);
+            }                      
+            $(sections[index - change]).find('.charts').addClass('hidden');  
             isFinished = true;
             if(index === sections.length - 1) {
                 $('.cluster .nextPage').addClass('hidden');
@@ -60,6 +67,22 @@ function scrollFunc(change) {
                 $('.cluster .nextPage').removeClass('hidden');
                 $('.cluster .previousPage').removeClass('hidden');
             }
+
+            if(index === 0) {
+                $('.cluster .menu .overview').addClass('active');
+                $('.cluster .menu .overseas').removeClass('active');
+                $('.cluster .menu .domestic').removeClass('active');
+            }
+            else if(index > 0 && index < 4) {
+                $('.cluster .menu .overview').removeClass('active');
+                $('.cluster .menu .overseas').addClass('active');
+                $('.cluster .menu .domestic').removeClass('active');
+            }
+            else {
+                $('.cluster .menu .overview').removeClass('active');
+                $('.cluster .menu .overseas').removeClass('active');
+                $('.cluster .menu .domestic').addClass('active');
+            }
         });
     $(sections[index]).find('.title').removeClass('left-to-center');
 }
@@ -70,8 +93,7 @@ function scrollFunc(change) {
 function loadchart(index) {  
 
     if(index === 0) {
-       // $.getJSON("http://localhost:8080/overall/overseasVsDomestic",function(result) {
-            var data = [{'name': 'domestic', 'y': 45}, {'name': 'overseas', 'y': 56}];
+        $.getJSON("http://localhost:8080/graph1",function(data) {
             $('#pie-chart').highcharts({
                 chart: {
                     // backgroundColor: "transparent",
@@ -82,7 +104,7 @@ function loadchart(index) {
                 },
                 title: {text: 'Browser market shares. January, 2015 to May, 2015'},
                 tooltip: {
-                    pointFormat: '<b>{point.name}: </b><b>{point.percentage:.1f}%</b>', 
+                    pointFormat: '<b>{point.name}: </b><b>{point.y} tweets</b>', 
                     style: {fontSize: '18px'},          
                 },
                 plotOptions: {
@@ -105,110 +127,112 @@ function loadchart(index) {
                     data: data,
                 }]
             });
-       // });
+        requestSent = false;
+        });
     }
 
     if(index === 1) {
-        var categories = [{"name": "Asia", "countries": ["China", "Korea"], "positive": 45, "negative": 55}, {"name": "Europe", "countries": ["UK", "Italy"], "positive": 45, "negative": 55}];
-        var ca = eval(categories);
-        var positive = [];
-        var negative = [];
-        var continents = [];
-        for(var i = 0; i < categories.length; i ++) {
-            positive.push(categories[i].positive);
-            negative.push(categories[i].negative);
-            continents.push(categories[i].name);
-        }
-        $('#overseas').highcharts({
-            chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Stacked column chart'
-            },
-            xAxis: {
-                categories: continents,
-                labels: {
-                    style: {
-                        color: '#fff',
-                        fontSize:'18px'
-                    }
-                }
-            },
-            yAxis: {
-                min: 0,
+        $.getJSON("http://localhost:8080/graph2",function(data) {
+            console.log(1);
+            var positive = [];
+            var negative = [];
+            var continents = [];
+            for(var i = 0; i < data.length; i ++) {
+                positive.push(data[i].positive);
+                negative.push(data[i].negative);
+                continents.push(data[i].name);
+            }
+            $('#overseas').highcharts({
+                chart: {
+                    type: 'column'
+                },
                 title: {
-                    text: 'Population',
-                    style: {
-                        color: '#fff',
-                        fontSize: '20px'
-                    }
+                    text: 'Stacked column chart'
                 },
-                labels: {
-                    style: {
-                        color: '#fff',
-                        fontSize:'18px'
-                    }
-                },
-                stackLabels: {
-                    enabled: true,
-                    style: {
-                        fontWeight: 'bold',
-                        color: '#fff',
-                        fontSize: '16px',
-                    }
-                }
-            },
-            legend: {
-                align: 'right',
-                x: -30,
-                verticalAlign: 'top',
-                y: 25,
-                floating: true,
-                backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
-                borderColor: '#CCC',
-                borderWidth: 0,
-                shadow: false,
-            },
-            tooltip: {
-                headerFormat: '<b>{point.x}</b><br/>',
-                pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}',
-                labels: {
-                    style: {
-                        color: '#fff',
-                        fontSize:'16px'
-                    }
-                }
-            },
-            plotOptions: {
-                column: {
-                    stacking: 'normal',
-                    dataLabels: {
-                        enabled: true,
-                        color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                xAxis: {
+                    categories: continents,
+                    labels: {
                         style: {
-                            textShadow: '0 0 3px white',
-                            fontSize: '15px'
+                            color: '#fff',
+                            fontSize:'18px'
                         }
                     }
-                }
-            },
-            series: [{
-                name: 'positive',
-                data: positive
-            }, {
-                name: 'negative',
-                data: negative
-            }]
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: 'Population',
+                        style: {
+                            color: '#fff',
+                            fontSize: '20px'
+                        }
+                    },
+                    labels: {
+                        style: {
+                            color: '#fff',
+                            fontSize:'18px'
+                        }
+                    },
+                    stackLabels: {
+                        enabled: true,
+                        style: {
+                            fontWeight: 'bold',
+                            color: '#fff',
+                            fontSize: '16px',
+                        }
+                    }
+                },
+                legend: {
+                    align: 'right',
+                    x: -30,
+                    verticalAlign: 'top',
+                    y: 25,
+                    floating: true,
+                    backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+                    borderColor: '#CCC',
+                    borderWidth: 0,
+                    shadow: false,
+                },
+                tooltip: {
+                    headerFormat: '<b>{point.x}</b><br/>',
+                    pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}',
+                    labels: {
+                        style: {
+                            color: '#fff',
+                            fontSize:'16px'
+                        }
+                    }
+                },
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        dataLabels: {
+                            enabled: true,
+                            color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                            style: {
+                                textShadow: '0 0 3px white',
+                                fontSize: '15px'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    name: 'positive',
+                    data: positive
+                }, {
+                    name: 'negative',
+                    data: negative
+                }]
+            });
+        requestSent = false;
         });
     }//
 
     if(index === 2) {
-        $.getJSON('http://localhost:8080/overall/countryCount', function (data) {
+        $.getJSON('http://localhost:8080/graph3', function (data) {
 
         // Add lower case codes to the data set for inclusion in the tooltip.pointFormat
         $.each(data, function () {
-            console.log(this);
             this.flag = this.code.replace('UK', 'GB').toLowerCase();
         });
 
@@ -266,6 +290,7 @@ function loadchart(index) {
                 }
             }]
         });
+        requestSent = false;
     });
     }
 
@@ -350,6 +375,7 @@ function loadchart(index) {
                 data: [3, 4, 4, 2, 5]
             }]
         });
+        requestSent = false;
     }
 
     if(index === 4) {
@@ -439,6 +465,7 @@ function loadchart(index) {
                 data: negative
             }]
         });
+        requestSent = false;
     }//
 
     if(index === 5) {
@@ -520,6 +547,7 @@ function loadchart(index) {
                     1.8, 1.2, 0.6, 0.1, 0.0]
             }]
         });
+        requestSent = false;
     }//
 
     if(index === 6) {
@@ -605,6 +633,7 @@ function loadchart(index) {
                 }
             }]
         });
+        requestSent = false;
     }//
 
 
@@ -616,8 +645,19 @@ $(document).ready(function() {
     $('.cluster .section').css({'height': height + 'px'});
     loadchart(index);
     $('.cluster .previousPage').addClass('hidden');
+
+    //********************* menu button ******************************
+$('.cluster .menu .overview').click(function() {
+    scrollFunc(-index);
+});
+$('.cluster .menu .overseas').click(function() {
+    scrollFunc(1 - index);
+});
+$('.cluster .menu .domestic').click(function() {
+    scrollFunc(4 - index);
 });
 
+//******************** turn over the page *************************
 $('.cluster .previousPage a').click(function() {
         if(index > 0)
             scrollFunc(-1);
@@ -626,6 +666,9 @@ $('.cluster .previousPage a').click(function() {
         if(index < sections.length - 1)
             scrollFunc(1);
     });
+});
+
+
 
 
 

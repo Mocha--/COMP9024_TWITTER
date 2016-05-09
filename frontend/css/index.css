@@ -4,10 +4,11 @@ body {width: 100%; margin: 0; zoom: 1; height: 100%; top: 0; overflow: hidden; f
 .cluster .currentData {position: fixed; font-size: 20px; top: 20px; left: 50px; color: #fff;}
 .cluster .currentData:after {display: inline-block; content: attr(data-content);}
 .cluster .menu {position: fixed; top: 20px; margin: 0 auto; width: 100%; height: 30px;}
-.cluster .menu .btn {width: auto; padding: 5px 15px; height: auto; font-size: 20px; color: #222831; background-color: #DBE2EF; opacity: 0.9; cursor: pointer; display: inline-block;}
+.cluster .menu .btn {width: auto; padding: 5px 20px; height: auto; font-size: 20px; color: #222831; background-color: #DBE2EF; opacity: 0.9; cursor: pointer; display: inline-block; margin: 0 3px;}
 .cluster .menu .btn:hover {background-color: #C5FCDA;}
+.cluster .menu .btn.active {background-color: #C5FCDA;}
 .cluster .title {font-size: 35px; color: #fff; font-weight: bold; padding-top: 0; opacity: 0;}
-.cluster .section .charts {padding-top: 6%; height: 60%;}
+.cluster .section .charts {padding-top: 6%; height: 65%;}
 .cluster .section .charts>div { height: 100%;}
 .cluster .section .charts b {font-size: 18px;}
 .cluster .active {display: block;}
