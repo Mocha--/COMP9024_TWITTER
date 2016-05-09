@@ -135,10 +135,12 @@ function loadchart(index) {
             var positive = [];
             var negative = [];
             var continents = [];
+            var countries = [];
             for(var i = 0; i < data.length; i ++) {
                 positive.push(data[i].positive);
                 negative.push(data[i].negative);
                 continents.push(data[i].name);
+                countries.push(data[i].countries);
             }
             $('#overseas').highcharts({
                 chart: {
@@ -192,8 +194,19 @@ function loadchart(index) {
                     shadow: false,
                 },
                 tooltip: {
-                    headerFormat: '<b>{point.x}</b><br/>',
-                    pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}',
+                    formatter: function () {
+                        var output = '<b>' + 'Most Popular Countries: ' + '</b><br/>';
+                        for(var i = 0; i < data.length; i ++) {
+                            if(data[i].name == this.point.category) {
+                                for(var j = 1; j <= data[i].countries.length; j ++) {
+                                    var percentage = data[i].countries[j-1].percentage * 100;
+                                    output = output + '<b>' + j + '. ' + data[i].countries[j-1].name + ' : ' + parseInt(percentage) + '%' + '</b><br/>'; 
+                                }
+                                break;
+                            }
+                        }
+                        return output;
+                    },
                     labels: {
                         style: {
                             color: '#fff',
@@ -264,7 +277,7 @@ function loadchart(index) {
                 useHTML: true,
                 padding: 0,
                 pointFormat: '<span class="f32"><span class="flag {point.flag}"></span></span>' +
-                    ' {point.name}: <b>{point.value}</b>',
+                    ' {point.name}: <b style="font-size:12px;">{point.value}</b>',
                 positioner: function () {
                     return { x: 0, y: 250 };
                 }
@@ -272,8 +285,10 @@ function loadchart(index) {
 
             colorAxis: {
                 min: 1,
-                max: 1000,
-                type: 'logarithmic'
+                max: 2000,
+                type: 'logarithmic',
+                minColor: '#FFF5B5',
+                maxColor: '#FE4E6E'
             },
 
             series : [{
@@ -283,7 +298,7 @@ function loadchart(index) {
                 name: 'Number of Tweets',
                 states: {
                     hover: {
-                        color: '#BADA55'
+                        color: '#78DEC9'
                     }
                 }
             }]
@@ -445,8 +460,19 @@ function loadchart(index) {
                     shadow: false
                 },
                 tooltip: {
-                    headerFormat: '<b>{point.x}</b><br/>',
-                    pointFormat: '{series.name}: {point.y}<br/>Total: {point.stackTotal}'
+                    formatter: function () {
+                        var output = '<b>' + 'Most Popular Cities: ' + '</b><br/>';
+                        for(var i = 0; i < data.length; i ++) {
+                            if(data[i].name == this.point.category) {
+                                for(var j = 1; j <= data[i].cities.length; j ++) {
+                                    var percentage = data[i].cities[j-1].percentage * 100;
+                                    output = output + '<b>' + j + '. ' + data[i].cities[j-1].name + ' : ' + parseInt(percentage) + '%' + '</b><br/>'; 
+                                }
+                                break;
+                            }
+                        }
+                        return output;
+                    },
                 },
                 plotOptions: {
                     column: {
@@ -478,10 +504,12 @@ function loadchart(index) {
             var states = [];
             var melbourne = [];
             var sydney = []
+            
             for(var i = 0; i < data.length; i ++) {
                 states.push(data[i].state);
                 melbourne.push(-data[i].melbourne);
                 sydney.push(data[i].sydney);
+                
             }
             $('#melbourneSydney').highcharts({
                 chart: {
@@ -543,7 +571,7 @@ function loadchart(index) {
                 },
 
                 tooltip: {
-                    formatter: function () {
+                    formatter: function() {
                         return '<b>' + this.series.name + ', ' + this.point.category + '</b><br/>' +
                             'Tourists: ' + Highcharts.numberFormat(Math.abs(this.point.y), 0);
                     }
