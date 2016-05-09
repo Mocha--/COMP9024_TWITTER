@@ -1,0 +1,139 @@
+---
+  - hosts: master
+    remote_user: ubuntu
+
+    tasks:
+    #   - name: install make
+    #     become: yes
+    #     apt:
+    #         name: make
+    #         state: present
+      #
+    #   - name: install aptitude
+    #     become: yes
+    #     apt:
+    #         name: aptitude
+    #         state: present
+      #
+    #   - name: install build-essential
+    #     become: yes
+    #     shell: aptitude install -y build-essential
+      #
+    #   - name: NGINX | install nginx
+    #     become: yes
+    #     apt:
+    #         name: nginx
+    #         state: present
+    #         update_cache: yes
+
+      - name: NGINX | copy nginx config
+        become: yes
+        copy:
+            dest: /etc/nginx/sites-available/default
+            src: nginxConfig
+            owner: root
+            group: root
+            mode: 0644
+
+      - name:
+        become: yes
+        service:
+            name: nginx
+            state: restarted
+
+
+    #   - name: NODEJS | curl nodejs 6.x
+    #     shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+      #
+    #   - name : NODEJS | install nodejs
+    #     become: yes
+    #     apt:
+    #         name: nodejs
+    #         state: present
+    #         update_cache: yes
+
+    #   - name: PM2 | install pm2 globally
+    #     become: yes
+    #     shell: sudo npm install -g pm2
+      #
+    #   - name: GIT | install git
+    #     become: yes
+    #     apt:
+    #         name: git
+    #         state: present
+    #         update_cache: yes
+      #
+    #   - name: clone project
+    #     git:
+    #         repo: https://github.com/Mocha--/COMP9024_TWITTER.git
+    #         dest: ~/COMP9024_TWITTER
+    #         version: develop
+      #
+    #   - name: install packages
+    #     npm:
+    #         state: present
+    #         path: ~/COMP9024_TWITTER
+
+
+
+
+# - hosts: harvester
+#   remote_user: ubuntu
+#   # gather_facts: True
+#   tasks:
+        # - name: install make
+        #   become: yes
+        #   apt:
+        #       name: make
+        #       state: present
+        #
+        # - name: install aptitude
+        #   become: yes
+        #   apt:
+        #       name: aptitude
+        #       state: present
+        #
+        # - name: install build-essential
+        #   become: yes
+        #   shell: aptitude install -y build-essential
+
+    #   - name: curl nodejs 6.x
+    #     shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+      #
+    #   - name : install nodejs
+    #     become: yes
+    #     apt:
+    #         name: nodejs
+    #         state: present
+    #         update_cache: yes
+
+    #   - name: install pm2 globally
+    #     become: yes
+    #     shell: sudo npm install -g pm2
+
+    #   - name: install git
+    #     become: yes
+    #     apt:
+    #         name: git
+    #         state: present
+    #         update_cache: yes
+    #
+        # - name: clone project
+        #   git:
+        #       repo: https://github.com/Mocha--/COMP9024_TWITTER.git
+        #       dest: ~/COMP9024_TWITTER
+        #       version: develop
+
+        # - name: install packages
+        #   npm:
+        #       state: present
+        #       path: ~/COMP9024_TWITTER
+
+
+
+    #   - name: test mkdir
+    #     shell: mkdir hehehe
+    #     remote_user: ubuntu
+    #   - name: test connection
+    #     ping:
+    #     remote_user: ubuntu
