@@ -13,16 +13,6 @@ const OVERALL = 'overall';
 const BASEONFROM = 'baseOnFrom';
 const BASEONTO = 'baseOnTo';
 
-function getData(design, view, cb) {
-    db.view(design, view, { group: true }, function(err, body) {
-        if (!err) {
-            cb(body.rows);
-        } else {
-            console.log(err);
-        }
-    });
-}
-
 // graph 1
 function convertDataForGraph1(cb) {
     db.view(OVERALL, 'overseasVsDomestic', { group: true }, function(err, body) {
@@ -163,7 +153,7 @@ function convertDataForGraph4(cb) {
                     newData.push(data);
                 }
             });
-            cb(newData);
+            cb(getFirstFiveCities(newData));
         } else {
             console.log(err);
         }
@@ -302,6 +292,29 @@ function getFirstFiveItems(dict, total) {
         obj['name'] = data[0];
         obj['percentage'] = (data[1] / total).toFixed(2);
         newData.push(obj);
+    });
+    return newData;
+}
+
+function getFirstFiveCities(array) {
+    var dict = {};
+    var newData = [];
+    array.forEach(function(data) {
+        dict[data.name] = data.domestic + data.overseas;
+    });
+    var items = Object.keys(dict).map(function(key) {
+        return [key, dict[key]];
+    });
+    items.sort(function(first, second) {
+        return second[1] - first[1];
+    });
+    var rawData = items.slice(0, 6);
+    rawData.forEach(function(item) {
+        array.forEach(function (data) {
+            if(item[0] === data.name) {
+                newData.push(data);
+            }
+        });
     });
     return newData;
 }
