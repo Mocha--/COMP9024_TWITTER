@@ -685,7 +685,7 @@ var code = [{
 }, {
     "code": "SB",
     "value": 19,
-    "name": "Solomon Islands"
+    "name": "Solomon, islands"
 }, {
     "code": "SO",
     "value": 15,
