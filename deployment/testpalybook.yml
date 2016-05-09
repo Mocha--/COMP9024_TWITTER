@@ -1,12 +1,78 @@
 ---
-- hosts: instances
-  remote_user: ubuntu
-  gather_facts: True
-  tasks:
-      - name: test connection
-        ping:
-        remote_user: ubuntu
-      
-      - name: test mkdir
-        shell: mkdir hehehe
-        remote_user: ubuntu
+  - hosts: local
+    remote_user: mocha
+    tasks:
+        - name: create instance
+          os_server:
+              state: present
+              auth:
+                  auth_url: https://dashboard.rc.nectar.org.au/auth/login/
+                  username: xibow1
+                  password: 92312mel
+                  project_name: CCC-2016-7
+              name: test1
+              image: ubuntu-15.10-20160106
+
+    # tasks:
+    #     - name: test connection
+    #       ping:
+# - hosts: harvester
+#   remote_user: ubuntu
+#   # gather_facts: True
+#   tasks:
+        # - name: install make
+        #   become: yes
+        #   apt:
+        #       name: make
+        #       state: present
+        #
+        # - name: install aptitude
+        #   become: yes
+        #   apt:
+        #       name: aptitude
+        #       state: present
+        #
+        # - name: install build-essential
+        #   become: yes
+        #   shell: aptitude install -y build-essential
+
+    #   - name: curl nodejs 6.x
+    #     shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+      #
+    #   - name : install nodejs
+    #     become: yes
+    #     apt:
+    #         name: nodejs
+    #         state: present
+    #         update_cache: yes
+
+    #   - name: install pm2 globally
+    #     become: yes
+    #     shell: sudo npm install -g pm2
+
+    #   - name: install git
+    #     become: yes
+    #     apt:
+    #         name: git
+    #         state: present
+    #         update_cache: yes
+    #
+        # - name: clone project
+        #   git:
+        #       repo: https://github.com/Mocha--/COMP9024_TWITTER.git
+        #       dest: ~/COMP9024_TWITTER
+        #       version: develop
+
+        # - name: install packages
+        #   npm:
+        #       state: present
+        #       path: ~/COMP9024_TWITTER
+
+
+
+    #   - name: test mkdir
+    #     shell: mkdir hehehe
+    #     remote_user: ubuntu
+    #   - name: test connection
+    #     ping:
+    #     remote_user: ubuntu

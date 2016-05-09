@@ -1,23 +1,25 @@
-sudo apt-get install git
-git clone https://github.com/Mocha--/COMP9024_TWITTER.git
-git checkout develop
+# dependencies
 sudo apt-get install -y make
 sudo apt-get install -y aptitude
 sudo aptitude install -y build-essential
-
-sudo add-apt-repository ppa:couchdb/stable -y
-sudo apt-get update -y
-sudo apt-get install -V -y couchdb
-#curl -fsSL https://get.docker.com/ | sh
-#docker pull couchdb
-#sudo docker run -p 5984:5984 -d --name couchdb couchdb
-sudo apt-get install vim
-
 
 #nodejs
 curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 sudo apt-get install -y nodejs
 sudo npm install -g pm2
 
-# in project folder
+sudo apt-get install git
+git clone https://github.com/Mocha--/COMP9024_TWITTER.git
+cd COMP90024_TWITTER
+git checkout develop
 npm install
+
+
+# couchdb
+sudo add-apt-repository ppa:couchdb/stable -y
+sudo apt-get update -y
+sudo apt-get install -V -y couchdb
+sudo apt-get install vim
+
+# nginx
+sudo apt-get install -y nginx
