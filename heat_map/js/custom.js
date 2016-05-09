@@ -1,6 +1,6 @@
 $(function () {
 
-    $.getJSON('https://www.highcharts.com/samples/data/jsonp.php?filename=world-population-density.json&callback=?', function (data) {
+    $.getJSON('http://localhost:8080/graph3', function (data) {
 
         // Add lower case codes to the data set for inclusion in the tooltip.pointFormat
         $.each(data, function () {
@@ -11,12 +11,12 @@ $(function () {
         $('#map_container').highcharts('Map', {
 
             title: {
-                text: 'Fixed tooltip with HTML'
+                text: 'Tourists Distribution'
             },
 
             legend: {
                 title: {
-                    text: 'Population density per km²',
+                    text: 'Number of Tweets',
                     style: {
                         color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
                     }
@@ -37,7 +37,7 @@ $(function () {
                 useHTML: true,
                 padding: 0,
                 pointFormat: '<span class="f32"><span class="flag {point.flag}"></span></span>' +
-                    ' {point.name}: <b>{point.value}</b>/km²',
+                    ' {point.name}: <b>{point.value}</b>',
                 positioner: function () {
                     return { x: 0, y: 250 };
                 }
@@ -53,7 +53,7 @@ $(function () {
                 data : data,
                 mapData: Highcharts.maps['custom/world'],
                 joinBy: ['iso-a2', 'code'],
-                name: 'Population density',
+                name: 'Number of Tweets',
                 states: {
                     hover: {
                         color: '#BADA55'

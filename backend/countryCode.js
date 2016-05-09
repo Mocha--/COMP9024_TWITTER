@@ -109,7 +109,7 @@ var code = [{
 }, {
     "code": "BN",
     "value": 76,
-    "name": "Brunei Darussalam"
+    "name": "Brunei"
 }, {
     "code": "BG",
     "value": 69,
@@ -201,7 +201,7 @@ var code = [{
 }, {
     "code": "CZ",
     "value": 136,
-    "name": "Czech Republic"
+    "name": "Czech"
 }, {
     "code": "DK",
     "value": 131,
@@ -225,7 +225,7 @@ var code = [{
 }, {
     "code": "EG",
     "value": 81,
-    "name": "Egypt, Arab Rep."
+    "name": "Egypt"
 }, {
     "code": "SV",
     "value": 299,
@@ -283,6 +283,10 @@ var code = [{
     "value": 234,
     "name": "Germany"
 }, {
+    "code": "DD",
+    "value": 23,
+    "name": "German"
+},{
     "code": "GH",
     "value": 107,
     "name": "Ghana"
@@ -349,7 +353,7 @@ var code = [{
 }, {
     "code": "IR",
     "value": 45,
-    "name": "Iran, Islamic Rep."
+    "name": "Iran"
 }, {
     "code": "IQ",
     "value": 73,
@@ -397,10 +401,10 @@ var code = [{
 }, {
     "code": "KP",
     "value": 202,
-    "name": "Korea, Dem. Rep."
+    "name": "Korea"
 }, {
     "code": "KR",
-    "value": 504,
+    "value": 0,
     "name": "Korea, Rep."
 }, {
     "code": "XK",
@@ -417,7 +421,7 @@ var code = [{
 }, {
     "code": "LA",
     "value": 27,
-    "name": "Lao PDR"
+    "name": "Laos"
 }, {
     "code": "LV",
     "value": 36,
@@ -505,7 +509,7 @@ var code = [{
 }, {
     "code": "FM",
     "value": 159,
-    "name": "Micronesia, Fed. Sts."
+    "name": "Micronesia"
 }, {
     "code": "MD",
     "value": 124,
@@ -545,7 +549,7 @@ var code = [{
 }, {
     "code": "NL",
     "value": 492,
-    "name": "Netherlands"
+    "name": "The Netherlands"
 }, {
     "code": "NC",
     "value": 14,
@@ -553,7 +557,7 @@ var code = [{
 }, {
     "code": "NZ",
     "value": 17,
-    "name": "New Zealand"
+    "name": "News zealand"
 }, {
     "code": "NI",
     "value": 48,
@@ -629,7 +633,7 @@ var code = [{
 }, {
     "code": "RU",
     "value": 9,
-    "name": "Russian Federation"
+    "name": "Russia"
 }, {
     "code": "RW",
     "value": 431,
@@ -681,7 +685,7 @@ var code = [{
 }, {
     "code": "SB",
     "value": 19,
-    "name": "Solomon Islands"
+    "name": "Solomon, islands"
 }, {
     "code": "SO",
     "value": 15,
@@ -689,7 +693,7 @@ var code = [{
 }, {
     "code": "ZA",
     "value": 41,
-    "name": "South Africa"
+    "name": "Southafrica"
 }, {
     "code": "SS",
     "value": 13,
@@ -741,7 +745,7 @@ var code = [{
 }, {
     "code": "SY",
     "value": 111,
-    "name": "Syrian Arab Republic"
+    "name": "Syria"
 }, {
     "code": "TJ",
     "value": 49,
@@ -809,7 +813,7 @@ var code = [{
 }, {
     "code": "US",
     "value": 34,
-    "name": "United States"
+    "name": "American"
 }, {
     "code": "UY",
     "value": 19,
@@ -825,7 +829,7 @@ var code = [{
 }, {
     "code": "VE",
     "value": 33,
-    "name": "Venezuela, RB"
+    "name": "Venezuela"
 }, {
     "code": "VN",
     "value": 280,
@@ -845,7 +849,7 @@ var code = [{
 }, {
     "code": "YE",
     "value": 46,
-    "name": "Yemen, Rep."
+    "name": "Yemen"
 }, {
     "code": "ZM",
     "value": 17,
