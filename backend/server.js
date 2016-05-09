@@ -342,43 +342,43 @@ function capitalizeFirstLetter(string) {
 }
 
 // graph 1
-app.get('/graph1', function(req, res) {
+app.get('/api/v1/graph1', function(req, res) {
     var cb = res.send.bind(res);
     convertDataForGraph1(cb);
 });
 
 // graph 2
-app.get('/graph2', function(req, res) {
+app.get('/api/v1/graph2', function(req, res) {
     var cb = res.send.bind(res);
     convertDataForGraph2(cb);
 });
 
 // graph 3
-app.get('/graph3', function(req, res) {
+app.get('/api/v1/graph3', function(req, res) {
     var cb = res.send.bind(res);
     convertDataForGraph3(cb);
 });
 
 // graph 4
-app.get('/graph4', function(req, res) {
+app.get('/api/v1/graph4', function(req, res) {
     var cb = res.send.bind(res);
     convertDataForGraph4(cb);
 });
 
 // graph 5
-app.get('/graph5', function(req, res) {
+app.get('/api/v1/graph5', function(req, res) {
     var cb = res.send.bind(res);
     convertDataForGraph5(cb);
 });
 
 // graph 6
-app.get('/graph6', function(req, res) {
+app.get('/api/v1/graph6', function(req, res) {
     var cb = res.send.bind(res);
     convertDataForGraph6(cb);
 });
 
 // graph 7
-app.get('/graph7', function(req, res) {
+app.get('/api/v1/graph7', function(req, res) {
     var cb = res.send.bind(res);
     convertDataForGraph7(cb);
 });

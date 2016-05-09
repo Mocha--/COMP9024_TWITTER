@@ -13,9 +13,10 @@ var sections = [];
 sections = document.getElementsByClassName("section");
  // console.log(sections);
 var index = 0;
+var apiBase = 'http://localhost:8080/api/v1';
 
 var mousewheelevt = (/Firefox/i.test(navigator.userAgent))? "DOMMouseScroll" : "mousewheel"; //FF doesn't recognize mousewheel as of FF3.x
- 
+
 if (document.attachEvent) //if IE (and Opera depending on user setting)
     document.attachEvent("on" + mousewheelevt, sectionChange);
 else if (document.addEventListener) //WC3 browsers
@@ -30,13 +31,13 @@ function sectionChange(e) {
 	var delta = evt.detail? evt.detail * (-120) : evt.wheelDelta;
     if(isFinished && !requestSent) {
         if(index < sections.length - 1 && delta <= -180) {
-            scrollFunc(1);           
-        }    
+            scrollFunc(1);
+        }
         if(index > 0 && delta >= 180) {
-            scrollFunc(-1);         
+            scrollFunc(-1);
         }
     }
-	
+
 	if (evt.preventDefault) //disable default wheel action of scrolling page
         evt.preventDefault();
     else
@@ -46,14 +47,14 @@ function sectionChange(e) {
 function scrollFunc(change) {
     isFinished = false;
     index = index + change;
-        $('html,body').animate({ scrollTop: sections[index].offsetTop }, 600, function () { 
+        $('html,body').animate({ scrollTop: sections[index].offsetTop }, 600, function () {
             if(requestSent) return;
             else {
                 requestSent = true;
                 loadchart(index);
-            }       
-            $(sections[index]).find('.title').addClass('left-to-center'); 
-                                  
+            }
+            $(sections[index]).find('.title').addClass('left-to-center');
+
             isFinished = true;
             if(index === sections.length - 1) {
                 $('.cluster .nextPage').addClass('hidden');
@@ -88,10 +89,10 @@ function scrollFunc(change) {
 
 //****************************** charts *********************************
 
-function loadchart(index) {  
+function loadchart(index) {
 
     if(index === 0) {
-        $.getJSON("http://localhost:8080/graph1",function(data) {
+        $.getJSON(apiBase + "/graph1",function(data) {
             $('#pie-chart').highcharts({
                 chart: {
                     // backgroundColor: "transparent",
@@ -102,8 +103,8 @@ function loadchart(index) {
                 },
                 title: {text: 'Browser market shares. January, 2015 to May, 2015'},
                 tooltip: {
-                    pointFormat: '<b>{point.name}: </b><b>{point.y} tweets</b>', 
-                    style: {fontSize: '18px'},          
+                    pointFormat: '<b>{point.name}: </b><b>{point.y} tweets</b>',
+                    style: {fontSize: '18px'},
                 },
                 plotOptions: {
                     pie: {
@@ -130,7 +131,7 @@ function loadchart(index) {
     }
 
     if(index === 1) {
-        $.getJSON("http://localhost:8080/graph2",function(data) {
+        $.getJSON(apiBase + "/graph2",function(data) {
             var positive = [];
             var negative = [];
             var continents = [];
@@ -226,7 +227,7 @@ function loadchart(index) {
     }//
 
     if(index === 2) {
-        $.getJSON('http://localhost:8080/graph3', function (data) {
+        $.getJSON(apiBase + '/graph3', function (data) {
 
         // Add lower case codes to the data set for inclusion in the tooltip.pointFormat
         $.each(data, function () {
@@ -292,7 +293,7 @@ function loadchart(index) {
     }
 
     if(index === 3) {
-        $.getJSON("http://localhost:8080/graph4",function(data) {
+        $.getJSON(apiBase + "/graph4",function(data) {
             var overseas = [];
             var domestic = [];
             var cities = [];
@@ -383,7 +384,7 @@ function loadchart(index) {
     }//
 
     if(index === 4) {
-        $.getJSON("http://localhost:8080/graph5",function(data) {
+        $.getJSON(apiBase + "/graph5",function(data) {
             var positive = [];
             var negative = [];
             var states = [];
@@ -473,7 +474,7 @@ function loadchart(index) {
     }//
 
     if(index === 5) {
-        $.getJSON("http://localhost:8080/graph6",function(data) {
+        $.getJSON(apiBase + "/graph6",function(data) {
             var states = [];
             var melbourne = [];
             var sydney = []
@@ -561,7 +562,7 @@ function loadchart(index) {
     }//
 
     if(index === 6) {
-        $.getJSON("http://localhost:8080/graph7",function(data) {
+        $.getJSON(apiBase + "/graph7",function(data) {
             var states = [];
             var income = [];
             var population = [];
@@ -686,8 +687,3 @@ $('.cluster .previousPage a').click(function() {
             scrollFunc(1);
     });
 });
-
-
-
-
-
