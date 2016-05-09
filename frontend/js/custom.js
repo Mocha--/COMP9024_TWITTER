@@ -1,6 +1,6 @@
 $(function () {
 
-    $.getJSON('http://localhost:8080/graph3', function (data) {
+    $.getJSON('http://localhost:8080/overall/countryCount', function (data) {
 
         // Add lower case codes to the data set for inclusion in the tooltip.pointFormat
         $.each(data, function () {
