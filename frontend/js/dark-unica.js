@@ -11,8 +11,9 @@ Highcharts.createElement('link', {
 }, null, document.getElementsByTagName('head')[0]);
 
 Highcharts.theme = {
-	colors: ["#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
-		"#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
+	// colors: ["#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
+	// 	"#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
+	colors: ["#E4F6F6","#98E5EC", "#27E1CE", "#393737", "#CFF800", "#F79486" ],
 	chart: {
 		backgroundColor: {
 			linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
@@ -116,7 +117,7 @@ Highcharts.theme = {
 	},
 	labels: {
 		style: {
-			color: '#707073'
+			color: '#fff'
 		}
 	},
 
