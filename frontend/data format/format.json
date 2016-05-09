@@ -17,5 +17,3 @@
 
 // chart 7 requires states name, income of each state, number of travelers of each state
 [{"state": "NSW", "Income": 45329, "number": 56}, {"..."}]
-
-
