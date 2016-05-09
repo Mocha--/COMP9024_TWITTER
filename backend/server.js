@@ -15,7 +15,9 @@ const BASEONTO = 'baseOnTo';
 
 // graph 1
 function convertDataForGraph1(cb) {
-    db.view(OVERALL, 'overseasVsDomestic', { group: true }, function(err, body) {
+    db.view(OVERALL, 'overseasVsDomestic', {
+        group: true
+    }, function(err, body) {
         if (!err) {
             var rawData = body.rows;
             var newData = [];
@@ -34,7 +36,9 @@ function convertDataForGraph1(cb) {
 
 // graph 2
 function convertDataForGraph2(cb) {
-    db.view(BASEONTO, 'overseasContinentWithAttitude', { group: true }, function(err, data) {
+    db.view(BASEONTO, 'overseasContinentWithAttitude', {
+        group: true
+    }, function(err, data) {
         if (!err) {
             var rawData = data.rows;
             var newData = [];
@@ -62,7 +66,9 @@ function convertDataForGraph2(cb) {
                     newData.push(obj);
                 }
             });
-            db.view(BASEONTO, 'countryInContinent', { group: true }, function(err, data) {
+            db.view(BASEONTO, 'countryInContinent', {
+                group: true
+            }, function(err, data) {
                 if (!err) {
                     var rawCountryData = data.rows;
                     var newCountryData = [];
@@ -96,7 +102,9 @@ function convertDataForGraph2(cb) {
 
 // graph 3, heat map
 function convertDataForGraph3(cb) {
-    db.view(OVERALL, 'countryCount', { group: true }, function(err, body) {
+    db.view(OVERALL, 'countryCount', {
+        group: true
+    }, function(err, body) {
         if (!err) {
             var rawData = body.rows;
             var newData = [];
@@ -120,7 +128,9 @@ function convertDataForGraph3(cb) {
 
 // graph 4
 function convertDataForGraph4(cb) {
-    db.view(BASEONFROM, 'overseasVsDomestic', { group: true }, function(err, body) {
+    db.view(BASEONFROM, 'overseasVsDomestic', {
+        group: true
+    }, function(err, body) {
         if (!err) {
             var rawData = body.rows;
             var tempData = [];
@@ -162,7 +172,9 @@ function convertDataForGraph4(cb) {
 
 // graph 5
 function convertDataForGraph5(cb) {
-    db.view(BASEONTO, 'domesticStateWithAttitude', { group: true }, function(err, data) {
+    db.view(BASEONTO, 'domesticStateWithAttitude', {
+        group: true
+    }, function(err, data) {
         if (!err) {
             var rawData = data.rows;
             var newData = [];
@@ -190,7 +202,9 @@ function convertDataForGraph5(cb) {
                     newData.push(obj);
                 }
             });
-            db.view(BASEONTO, 'cityInState', { group: true }, function(err, data) {
+            db.view(BASEONTO, 'cityInState', {
+                group: true
+            }, function(err, data) {
                 if (!err) {
                     var rawCountryData = data.rows;
                     var newCountryData = [];
@@ -225,7 +239,9 @@ function convertDataForGraph5(cb) {
 
 // graph 6
 function convertDataForGraph6(cb) {
-    db.view(BASEONFROM, 'melVsSyd', { group: true }, function(err, data) {
+    db.view(BASEONFROM, 'melVsSyd', {
+        group: true
+    }, function(err, data) {
         if (!err) {
             var rawData = data.rows;
             var newData = [];
@@ -256,7 +272,9 @@ function convertDataForGraph6(cb) {
 
 // graph 7
 function convertDataForGraph7(cb) {
-    db.view(BASEONFROM, 'states', { group: true }, function(err, data) {
+    db.view(BASEONFROM, 'states', {
+        group: true
+    }, function(err, data) {
         if (!err) {
             var rawData = data.rows;
             var newData = [];
@@ -310,8 +328,8 @@ function getFirstFiveCities(array) {
     });
     var rawData = items.slice(0, 6);
     rawData.forEach(function(item) {
-        array.forEach(function (data) {
-            if(item[0] === data.name) {
+        array.forEach(function(data) {
+            if (item[0] === data.name) {
                 newData.push(data);
             }
         });
@@ -364,6 +382,19 @@ app.get('/graph7', function(req, res) {
     var cb = res.send.bind(res);
     convertDataForGraph7(cb);
 });
+
+/* db.get('averageIncomeByState', function(err, res) {
+    if (!err) {
+        console.log(res);
+    }
+});
+
+db.get('populationByState', function(err, res) {
+    if (!err) {
+        console.log(res);
+    }
+});
+*/
 
 app.listen(8080, function() {
     console.log('Example app listening on port 8080!');
