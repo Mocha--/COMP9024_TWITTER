@@ -28,7 +28,7 @@ var requestSent = false;
 function sectionChange(e) {
 	var evt = window.event || e;
 	var delta = evt.detail? evt.detail * (-120) : evt.wheelDelta;
-    if(isFinished) {
+    if(isFinished && !requestSent) {
         if(index < sections.length - 1 && delta <= -180) {
             scrollFunc(1);           
         }    
@@ -48,13 +48,12 @@ function scrollFunc(change) {
     index = index + change;
         $('html,body').animate({ scrollTop: sections[index].offsetTop }, 600, function () { 
             if(requestSent) return;
-            $(sections[index]).find('.charts').removeClass('hidden');      
-            $(sections[index]).find('.title').addClass('left-to-center'); 
-            if(!requestSent) {
+            else {
                 requestSent = true;
                 loadchart(index);
-            }                      
-            $(sections[index - change]).find('.charts').addClass('hidden');  
+            }       
+            $(sections[index]).find('.title').addClass('left-to-center'); 
+                                  
             isFinished = true;
             if(index === sections.length - 1) {
                 $('.cluster .nextPage').addClass('hidden');
