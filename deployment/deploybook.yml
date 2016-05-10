@@ -3,28 +3,28 @@
     remote_user: ubuntu
 
     tasks:
-    #   - name: install make
-    #     become: yes
-    #     apt:
-    #         name: make
-    #         state: present
-      #
-    #   - name: install aptitude
-    #     become: yes
-    #     apt:
-    #         name: aptitude
-    #         state: present
-      #
-    #   - name: install build-essential
-    #     become: yes
-    #     shell: aptitude install -y build-essential
-      #
-    #   - name: NGINX | install nginx
-    #     become: yes
-    #     apt:
-    #         name: nginx
-    #         state: present
-    #         update_cache: yes
+      - name: install make
+        become: yes
+        apt:
+            name: make
+            state: present
+
+      - name: install aptitude
+        become: yes
+        apt:
+            name: aptitude
+            state: present
+
+      - name: install build-essential
+        become: yes
+        shell: aptitude install -y build-essential
+
+      - name: NGINX | install nginx
+        become: yes
+        apt:
+            name: nginx
+            state: present
+            update_cache: yes
 
       - name: NGINX | copy nginx config
         become: yes
@@ -35,105 +35,129 @@
             group: root
             mode: 0644
 
-      - name:
+      - name: NGINX | restart
         become: yes
         service:
             name: nginx
             state: restarted
 
+      - name: NODEJS | curl nodejs 6.x
+        shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 
-    #   - name: NODEJS | curl nodejs 6.x
-    #     shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-      #
-    #   - name : NODEJS | install nodejs
-    #     become: yes
-    #     apt:
-    #         name: nodejs
-    #         state: present
-    #         update_cache: yes
+      - name : NODEJS | install nodejs
+        become: yes
+        apt:
+            name: nodejs
+            state: present
+            update_cache: yes
 
-    #   - name: PM2 | install pm2 globally
-    #     become: yes
-    #     shell: sudo npm install -g pm2
-      #
-    #   - name: GIT | install git
-    #     become: yes
-    #     apt:
-    #         name: git
-    #         state: present
-    #         update_cache: yes
-      #
-    #   - name: clone project
-    #     git:
-    #         repo: https://github.com/Mocha--/COMP9024_TWITTER.git
-    #         dest: ~/COMP9024_TWITTER
-    #         version: develop
-      #
-    #   - name: install packages
-    #     npm:
-    #         state: present
-    #         path: ~/COMP9024_TWITTER
+      - name: PM2 | install pm2 globally
+        become: yes
+        shell: npm install -g pm2
 
+      - name: GIT | install git
+        become: yes
+        apt:
+            name: git
+            state: present
+            update_cache: yes
 
+      - name: COUCHDB | apt add repository
+        become: yes
+        apt_repository:
+            repo: ppa:couchdb/stable
+            state: present
+            update_cache: yes
 
+      - name: COUCHDB | install couchdb
+        become: yes
+        apt:
+            name: couchdb
+            state: present
+            update_cache: yes
 
-# - hosts: harvester
-#   remote_user: ubuntu
-#   # gather_facts: True
-#   tasks:
-        # - name: install make
-        #   become: yes
-        #   apt:
-        #       name: make
-        #       state: present
-        #
-        # - name: install aptitude
-        #   become: yes
-        #   apt:
-        #       name: aptitude
-        #       state: present
-        #
-        # - name: install build-essential
-        #   become: yes
-        #   shell: aptitude install -y build-essential
+      - name: COUCHDB | config
+        become: yes
+        ini_file:
+            dest: /etc/couchdb/local.ini
+            section: httpd
+            option: bind_address
+            value: 0.0.0.0
 
-    #   - name: curl nodejs 6.x
-    #     shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
-      #
-    #   - name : install nodejs
-    #     become: yes
-    #     apt:
-    #         name: nodejs
-    #         state: present
-    #         update_cache: yes
+      - name: COUCHDB | restart daemon
+        become: yes
+        service:
+            name: couchdb
+            state: restarted
 
-    #   - name: install pm2 globally
-    #     become: yes
-    #     shell: sudo npm install -g pm2
+      - name: PROJECT | clone project
+        git:
+            repo: https://github.com/Mocha--/COMP9024_TWITTER.git
+            dest: ~/COMP9024_TWITTER
+            version: develop
 
-    #   - name: install git
-    #     become: yes
-    #     apt:
-    #         name: git
-    #         state: present
-    #         update_cache: yes
-    #
-        # - name: clone project
-        #   git:
-        #       repo: https://github.com/Mocha--/COMP9024_TWITTER.git
-        #       dest: ~/COMP9024_TWITTER
-        #       version: develop
+      - name: PROJECT | install packages
+        npm:
+            state: present
+            path: ~/COMP9024_TWITTER
 
-        # - name: install packages
-        #   npm:
-        #       state: present
-        #       path: ~/COMP9024_TWITTER
+      - name: PROJECT | run server
+        shell: pm2 start server.js
+        args:
+            chdir: ~/COMP9024_TWITTER/backend
 
+  - hosts: harvester
+    remote_user: ubuntu
+    tasks:
+        - name: install make
+          become: yes
+          apt:
+              name: make
+              state: present
 
+        - name: install aptitude
+          become: yes
+          apt:
+              name: aptitude
+              state: present
 
-    #   - name: test mkdir
-    #     shell: mkdir hehehe
-    #     remote_user: ubuntu
-    #   - name: test connection
-    #     ping:
-    #     remote_user: ubuntu
+        - name: install build-essential
+          become: yes
+          shell: aptitude install -y build-essential
+
+        - name: NODEJS | curl nodejs 6.x
+          shell: curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
+
+        - name : NODEJS | install nodejs
+          become: yes
+          apt:
+              name: nodejs
+              state: present
+              update_cache: yes
+
+        - name: PM2 | install pm2 globally
+          become: yes
+          shell: sudo npm install -g pm2
+
+        - name: GIT | install git
+          become: yes
+          apt:
+              name: git
+              state: present
+              update_cache: yes
+
+        - name: PROJECT | clone project
+          git:
+              repo: https://github.com/Mocha--/COMP9024_TWITTER.git
+              dest: ~/COMP9024_TWITTER
+              version: develop
+
+        - name: PROJECT | install packages
+          npm:
+              state: present
+              path: ~/COMP9024_TWITTER
+
+        - name: PROJECT | run harvest app
+          shell: pm2 start harvest.js --node-args="harvest.js {{total}} {{sequence}}"
+          args:
+              chdir: ~/COMP9024_TWITTER/harvest
