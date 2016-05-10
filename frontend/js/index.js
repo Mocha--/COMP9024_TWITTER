@@ -597,8 +597,9 @@ function loadchart(index) {
             for (var i = 0; i < data.length; i ++) {
                 states.push(data[i].state);
                 income.push(data[i].income);
-                population.push(data[i].number);
+                population.push(parseFloat((data[i].percentage * 10).toFixed(2)));
             }
+            console.log(population);
             $('#travelerIncome').highcharts({
                 chart: {
                     zoomType: 'xy'
@@ -635,14 +636,14 @@ function loadchart(index) {
                     }
                 }, { // Secondary yAxis
                     title: {
-                        text: 'Number of Tourists',
+                        text: 'Number of Tourists/Total population',
                         style: {
                             color: Highcharts.getOptions().colors[0],
                             fontSize:'20px'
                         }
                     },
                     labels: {
-                        format: '{value}',
+                        format: '{value}‱',
                         style: {
                             color: Highcharts.getOptions().colors[0],
                             fontSize: '18px'
@@ -662,13 +663,14 @@ function loadchart(index) {
                     floating: true,
                     backgroundColor: (Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'
                 },
+
                 series: [{
-                    name: 'Number of Tourists',
+                    name: 'Number of Tweets/Total Population',
                     type: 'column',
                     yAxis: 1,
                     data: population,
                     tooltip: {
-                        valueSuffix: ''
+                        valueSuffix: '‱'
                     }
 
                 }, {
@@ -676,7 +678,7 @@ function loadchart(index) {
                     type: 'spline',
                     data: income,
                     tooltip: {
-                        valueSuffix: 'AUD'
+                        valueSuffix: ' AUD'
                     }
                 }]
             });
