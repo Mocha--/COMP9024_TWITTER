@@ -1,5 +1,7 @@
 [master]
-115.146.85.141 ansible_ssh_private_key_file=/home/mocha/.ssh/nectar/comp90024.key
+115.146.85.141 ansible_ssh_private_key_file=./comp90024.key
 
 [harvester]
-115.146.95.253 ansible_ssh_private_key_file=/home/mocha/.ssh/nectar/comp90024.key
+115.146.93.55 ansible_ssh_private_key_file=./comp90024.key sequence=3 total=3
+115.146.95.142 ansible_ssh_private_key_file=./comp90024.key sequence=2 total=3
+115.146.95.240 ansible_ssh_private_key_file=./comp90024.key sequence=1 total=3
