@@ -40,7 +40,7 @@ var population = [{
 		state: "capital territory",
 		population: 392000
 	}, {
-		state: "northern territory",
+		state: "north territory",
 		population: 244500,
 	}];
 

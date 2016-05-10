@@ -557,7 +557,7 @@ var code = [{
 }, {
     "code": "NZ",
     "value": 17,
-    "name": "News zealand"
+    "name": "New zealand"
 }, {
     "code": "NI",
     "value": 48,
@@ -813,7 +813,7 @@ var code = [{
 }, {
     "code": "US",
     "value": 34,
-    "name": "American"
+    "name": "America"
 }, {
     "code": "UY",
     "value": 19,
