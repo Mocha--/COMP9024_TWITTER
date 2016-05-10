@@ -1,6 +1,7 @@
 var nano = require('nano')('http://115.146.85.141:5984');
 var db = nano.use('travel_stats');
 var travelJson = require('../harvest/constant/locations/travel');
+var _ = require('lodash');
 
 var cities = [
     "Northland",
@@ -175,13 +176,13 @@ var cities = [
 var attitudes = ["positive", "negative"];
 
 var states = [
-	"capital territory",
-	"western australia",
-	"new south wales",
-	"queensland",
-	"north territory",
-	"victoria",
-	"tasmania"
+    "capital territory",
+    "western australia",
+    "new south wales",
+    "queensland",
+    "north territory",
+    "victoria",
+    "tasmania"
 ];
 
 var doc = {
@@ -200,17 +201,23 @@ var doc = {
     "overseas": true
 };
 
-var amount = 5432;
 
-for(var i = 0; i < amount; i++) {
-	var state = states[Math.floor(Math.random()*states.length)];
-	var attitude = attitudes[Math.floor(Math.random()*attitudes.length)];
-	var city = cities[Math.floor(Math.random()*cities.length)];
-	doc.from.state = state;
-	doc.from.city = city;
-	doc.attitude = attitude;
-	console.log(doc);
-}
-db.insert(doc, function(err, body) {
-    console.log(body);
-});
+
+// var amount = 5736;
+
+// for (var i = 0; i < amount; i++) {
+//     var state = states[Math.floor(Math.random() * states.length)].toLowerCase();
+//     var attitude = attitudes[Math.floor(Math.random() * attitudes.length)].toLowerCase();
+//     var city = cities[Math.floor(Math.random() * cities.length)].toLowerCase();
+//     var ausCities = _.keys(travelJson['australia'][state]);
+//     var ausCity = ausCities[Math.floor(Math.random() * ausCities.length)].toLowerCase();
+//     doc.from.state = state;
+//     doc.to.city = city;
+//     doc.from.city = ausCity;
+//     doc.attitude = attitude;
+//     if (doc) {
+//         db.insert(doc, function(err, body) {
+//             console.log(body);
+//         });
+//     }
+// }
