@@ -6,7 +6,7 @@ var countryCode = require('./countryCode');
 var cors = require('cors');
 var _ = require('lodash');
 var aurin = require('./aurin');
-
+var request = require('request');
 app.use(cors());
 
 const OVERALL = 'overall';
@@ -287,8 +287,8 @@ function convertDataForGraph7(cb) {
                         obj['income'] = income.wage;
                     }
                 });
-                aurin.population.forEach(function (population) {
-                    if(population.state === data.key) {
+                aurin.population.forEach(function(population) {
+                    if (population.state === data.key) {
                         obj['percentage'] = (data.value * 1000 / population.population).toFixed(3);
                     }
                 });
@@ -299,6 +299,14 @@ function convertDataForGraph7(cb) {
             console.log(err);
         }
     });
+}
+
+function getTotalCount(cb) {
+    request.get(
+        'http://115.146.85.141:5984/travel_stats',
+        function(err, res, body) {
+            cb({ amount: JSON.parse(body).doc_count});
+        });
 }
 
 function getFirstFiveItems(dict, total) {
@@ -345,7 +353,11 @@ function getFirstFiveCities(array) {
 function capitalizeFirstLetter(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
-
+// total amount
+app.get('/api/v1/amount', function(req, res) {
+    var cb = res.send.bind(res);
+    getTotalCount(cb);
+});
 // graph 1
 app.get('/api/v1/graph1', function(req, res) {
     var cb = res.send.bind(res);
