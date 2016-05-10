@@ -347,8 +347,8 @@ function getFirstFiveCities(array) {
             }
         });
     });
-    console.log(newData)
-    // return newData;
+    // console.log(newData)
+    return newData;
 }
 
 function capitalizeFirstLetter(string) {
