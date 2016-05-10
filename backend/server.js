@@ -287,6 +287,11 @@ function convertDataForGraph7(cb) {
                         obj['income'] = income.wage;
                     }
                 });
+                aurin.population.forEach(function (population) {
+                    if(population.state === data.key) {
+                        obj['percentage'] = (data.value * 1000 / population.population).toFixed(3);
+                    }
+                });
                 newData.push(obj);
             });
             cb(newData);
@@ -394,6 +399,7 @@ db.get('populationByState', function(err, res) {
         console.log(res);
     }
 });
+
 */
 
 app.listen(8080, function() {
