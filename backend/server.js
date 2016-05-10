@@ -115,9 +115,9 @@ function convertDataForGraph3(cb) {
                 countryCode.code.forEach(function(code) {
                     if (code.name.toLowerCase() === data.key) {
                         obj['code'] = code.code;
+                        newData.push(obj);
                     }
                 });
-                newData.push(obj);
             });
             cb(newData);
         } else {
