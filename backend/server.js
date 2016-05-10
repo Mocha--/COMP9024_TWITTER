@@ -331,7 +331,15 @@ function getFirstFiveCities(array) {
     var dict = {};
     var newData = [];
     array.forEach(function(data) {
-        dict[data.name] = data.domestic + data.overseas;
+        var domestic = 0;
+        var overseas = 0;
+        if(data.domestic) {
+            domestic = data.domestic;
+        } 
+        if(data.overseas) {
+            overseas = data.overseas;
+        }
+        dict[data.name] = domestic + overseas;
     });
     var items = Object.keys(dict).map(function(key) {
         return [key, dict[key]];
@@ -347,7 +355,6 @@ function getFirstFiveCities(array) {
             }
         });
     });
-    // console.log(newData)
     return newData;
 }
 
