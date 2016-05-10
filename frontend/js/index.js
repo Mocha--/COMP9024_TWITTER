@@ -334,6 +334,9 @@ function loadchart(index) {
                 chart: {
                     type: 'column'
                 },
+                title: {
+                    text: null,
+                },
                 xAxis: {
                     categories: cities,
                     labels: {
@@ -526,7 +529,7 @@ function loadchart(index) {
                     type: 'bar'
                 },
                 title: {
-                    text: 'Distribution of Australian tourists in Melbourne/Sydney traveling domestically by different states'
+                    text: 'Distribution of Australian tourists in Melbourne/Sydney traveling domestically by states'
                 },
                 xAxis: [{
                     categories: states,
