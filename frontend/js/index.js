@@ -1,11 +1,13 @@
 
-
+var apiBase = 'http://115.146.85.141/api/v1';
 //*************************** Data on the top ********************************
 var data = 0;
 $('.cluster .currentData').addClass('currentData').attr('data-content', data);
 setInterval(function() {
-    data = data + 13;
-    $('.cluster .currentData').addClass('currentData').attr('data-content', data);
+    $.getJSON(apiBase + '/amount', function(data) {
+        $('.cluster .currentData').addClass('currentData').attr('data-content', data.amount);
+    });
+    
 }, 5000);
 
 //*************************** wheel ********************************
@@ -13,7 +15,7 @@ var sections = [];
 sections = document.getElementsByClassName("section");
  // console.log(sections);
 var index = 0;
-var apiBase = 'http://localhost:8080/api/v1';
+
 
 var mousewheelevt = (/Firefox/i.test(navigator.userAgent))? "DOMMouseScroll" : "mousewheel"; //FF doesn't recognize mousewheel as of FF3.x
 
@@ -48,8 +50,9 @@ function scrollFunc(change) {
     isFinished = false;
     index = index + change;
         $('html,body').animate({ scrollTop: sections[index].offsetTop }, 600, function () {
+
             if(requestSent) return;
-            else {
+            else if(index > 0){
                 requestSent = true;
                 loadchart(index);
             }
@@ -61,18 +64,24 @@ function scrollFunc(change) {
             }
             else if(index === 0) {
                 $('.cluster .previousPage').addClass('hidden');
+                $('.cluster .profile .image').addClass('scale');
             }
             else {
                 $('.cluster .nextPage').removeClass('hidden');
                 $('.cluster .previousPage').removeClass('hidden');
+                $('.cluster .profile .image').removeClass('scale');
             }
-
-            if(index === 0) {
+            if (index === 0) {
+                $('.cluster .menu .overview').removeClass('active');
+                $('.cluster .menu .overseas').removeClass('active');
+                $('.cluster .menu .domestic').removeClass('active');
+            }
+            else if(index === 1) {
                 $('.cluster .menu .overview').addClass('active');
                 $('.cluster .menu .overseas').removeClass('active');
                 $('.cluster .menu .domestic').removeClass('active');
             }
-            else if(index > 0 && index < 4) {
+            else if(index > 1 && index < 5) {
                 $('.cluster .menu .overview').removeClass('active');
                 $('.cluster .menu .overseas').addClass('active');
                 $('.cluster .menu .domestic').removeClass('active');
@@ -91,7 +100,7 @@ function scrollFunc(change) {
 
 function loadchart(index) {
 
-    if(index === 0) {
+    if(index === 1) {
         $.getJSON(apiBase + "/graph1",function(data) {
             $('#pie-chart').highcharts({
                 chart: {
@@ -101,9 +110,9 @@ function loadchart(index) {
                     plotShadow: false,
                     type: 'pie'
                 },
-                title: {text: 'Browser market shares. January, 2015 to May, 2015'},
+                title: {text: 'Propotion of Australian tourists travelling overseas and domestically'},
                 tooltip: {
-                    pointFormat: '<b>{point.name}: </b><b>{point.y} tweets</b>',
+                    pointFormat: '<b>{point.name}: </b><b>{point.y}</b>',
                     style: {fontSize: '18px'},
                 },
                 plotOptions: {
@@ -130,7 +139,7 @@ function loadchart(index) {
         });
     }
 
-    if(index === 1) {
+    if(index === 2) {
         $.getJSON(apiBase + "/graph2",function(data) {
             var positive = [];
             var negative = [];
@@ -142,12 +151,13 @@ function loadchart(index) {
                 continents.push(data[i].name);
                 countries.push(data[i].countries);
             }
+            console.log(negative);
             $('#overseas').highcharts({
                 chart: {
                     type: 'column'
                 },
                 title: {
-                    text: 'Stacked column chart'
+                    text: 'Distribution of Australian tourists traveling overseas by different continents'
                 },
                 xAxis: {
                     categories: continents,
@@ -239,7 +249,7 @@ function loadchart(index) {
         });
     }//
 
-    if(index === 2) {
+    if(index === 3) {
         $.getJSON(apiBase + '/graph3', function (data) {
 
         // Add lower case codes to the data set for inclusion in the tooltip.pointFormat
@@ -307,7 +317,7 @@ function loadchart(index) {
     });
     }
 
-    if(index === 3) {
+    if(index === 4) {
         $.getJSON(apiBase + "/graph4",function(data) {
             var overseas = [];
             var domestic = [];
@@ -317,12 +327,12 @@ function loadchart(index) {
                 domestic.push(data[i].domestic);
                 cities.push(data[i].name);
             }
+            console.log(overseas);
+            console.log(domestic);
+            console.log(cities);
             $('#travelToOverseas').highcharts({
                 chart: {
                     type: 'column'
-                },
-                title: {
-                    text: 'Stacked column chart',
                 },
                 xAxis: {
                     categories: cities,
@@ -398,7 +408,7 @@ function loadchart(index) {
         });
     }//
 
-    if(index === 4) {
+    if(index === 5) {
         $.getJSON(apiBase + "/graph5",function(data) {
             var positive = [];
             var negative = [];
@@ -413,7 +423,7 @@ function loadchart(index) {
                     type: 'column'
                 },
                 title: {
-                    text: 'Stacked column chart'
+                    text: 'With top 5 cities of each state'
                 },
                 xAxis: {
                     categories: states,
@@ -499,7 +509,7 @@ function loadchart(index) {
         });
     }//
 
-    if(index === 5) {
+    if(index === 6) {
         $.getJSON(apiBase + "/graph6",function(data) {
             var states = [];
             var melbourne = [];
@@ -516,10 +526,7 @@ function loadchart(index) {
                     type: 'bar'
                 },
                 title: {
-                    text: 'Population pyramid for Germany, 2015'
-                },
-                subtitle: {
-                    text: 'Source: <a href="http://populationpyramid.net/germany/2015/">Population Pyramids of the World from 1950 to 2100</a>'
+                    text: 'Distribution of Australian tourists in Melbourne/Sydney traveling domestically by different states'
                 },
                 xAxis: [{
                     categories: states,
@@ -589,7 +596,7 @@ function loadchart(index) {
         });
     }//
 
-    if(index === 6) {
+    if(index === 7) {
         $.getJSON(apiBase + "/graph7",function(data) {
             var states = [];
             var income = [];
@@ -605,10 +612,10 @@ function loadchart(index) {
                     zoomType: 'xy'
                 },
                 title: {
-                    text: 'Average Monthly Temperature and Rainfall in Tokyo'
+                    text: null,
                 },
                 subtitle: {
-                    text: 'Source: WorldClimate.com'
+                    text: 'Income Source: https://www.livingin-australia.com/salaries-australia/'
                 },
                 xAxis: [{
                     categories: states,
@@ -698,13 +705,13 @@ $(document).ready(function() {
 
     //********************* menu button ******************************
 $('.cluster .menu .overview').click(function() {
-    scrollFunc(-index);
-});
-$('.cluster .menu .overseas').click(function() {
     scrollFunc(1 - index);
 });
+$('.cluster .menu .overseas').click(function() {
+    scrollFunc(2 - index);
+});
 $('.cluster .menu .domestic').click(function() {
-    scrollFunc(4 - index);
+    scrollFunc(5 - index);
 });
 
 //******************** turn over the page *************************

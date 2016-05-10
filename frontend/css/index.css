@@ -17,6 +17,46 @@ body {width: 100%; margin: 0; zoom: 1; height: 100%; top: 0; overflow: hidden; f
 .cluster .previousPage a:hover {opacity: 0.7;}
 .cluster .nextPage a {background: url(next.png) 50% 0 no-repeat; width: 60px; height: 60px; background-size: 50px 50px; position: fixed; bottom: 20px; right: 30px; cursor: pointer; text-decoration: none;}
 .cluster .nextPage a:hover {opacity: 0.7;}
+.cluster .profile .title a {color: #C5FCDA;}
+.cluster .profile .members {width: 100%; margin: 0 auto; padding-top: 20px; font-size: 20px; color: #fff;}
+.cluster .profile .members.male {padding-top: 10px;}
+.cluster .profile .members span {background: url(Female.png) 0 50% no-repeat; background-size: 18px auto; padding-left: 20px; padding-right: 20px;}
+.cluster .profile .members.male span {background-image: url(Male.png); background-size: 16px auto;}
+.cluster .profile .image {height: 50%; background: url(image.jpg) 50% 100% no-repeat; background-size: auto 94%;}
+.cluster .profile .image.scale {
+  animation-name: scaleToLarge;
+  -webkit-animation-name: scaleToLarge;
+  -o-animation-name: scaleToLarge;
+  -ms-animation-name: scaleToLarge;
+  -moz-animation-name: scaleToLarge;
+  animation-duration: 1.5s;
+  -webkit-animation-duration: 1.5s;
+  -ms-animation-duration: 1.5s;
+  -moz-animation-duration: 1.5s;
+  -o-animation-duration: 1.5s;
+}
+
+@keyframes scaleToLarge {
+  0% {transform: scale(1.5); transform-origin: top center;}
+  100% {transform: scale(1);}
+}
+@-webkit-keyframes scaleToLarge {
+  0% {transform: scale(1.5); transform-origin: top center;}
+  100% {transform: scale(1);}
+}
+@-o-keyframes scaleToLarge {
+  0% {transform: scale(1.5); transform-origin: top center;}
+  100% {transform: scale(1);}
+}
+@-ms-keyframes scaleToLarge {
+  0% {transform: scale(1.5); transform-origin: top center;}
+  100% {transform: scale(1);}
+}
+@-moz-keyframes scaleToLarge {
+  0% {transform: scale(1.5); transform-origin: top center;}
+  100% {transform: scale(1);}
+}
+
 
 .cluster .background {
   background: url('bg.jpeg') 50% 0 no-repeat; 
