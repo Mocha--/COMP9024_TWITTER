@@ -726,7 +726,7 @@ $('.cluster .menu .domestic').click(function() {
     scrollFunc(4 - index);
 });
 $('.cluster .menu .global').click(function() {
-    scrollFunc(5 - index);
+    scrollFunc(6 - index);
 });
 
 //******************** turn over the page *************************
