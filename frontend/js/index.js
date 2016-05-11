@@ -1,3 +1,10 @@
+/*
+xibo wang 652158
+yiming tan 676303
+yuqing han 680292
+xiang xue 675875
+mengya wang 692448
+ */
 
 var apiBase = 'http://115.146.85.141/api/v1';
 //*************************** Data on the top ********************************
@@ -7,7 +14,7 @@ setInterval(function() {
     $.getJSON(apiBase + '/amount', function(data) {
         $('.cluster .currentData').addClass('currentData').attr('data-content', data.amount);
     });
-    
+
 }, 5000);
 
 //*************************** wheel ********************************
@@ -219,7 +226,7 @@ function loadchart(index) {
                             if(data[i].name == this.point.category) {
                                 for(var j = 1; j <= data[i].countries.length; j ++) {
                                     var percentage = data[i].countries[j-1].percentage * 100;
-                                    output = output + '<b>' + j + '. ' + data[i].countries[j-1].name + ' : ' + parseInt(percentage) + '%' + '</b><br/>'; 
+                                    output = output + '<b>' + j + '. ' + data[i].countries[j-1].name + ' : ' + parseInt(percentage) + '%' + '</b><br/>';
                                 }
                                 break;
                             }
@@ -488,7 +495,7 @@ function loadchart(index) {
                             if(data[i].name == this.point.category) {
                                 for(var j = 1; j <= data[i].cities.length; j ++) {
                                     var percentage = data[i].cities[j-1].percentage * 100;
-                                    output = output + '<b>' + j + '. ' + data[i].cities[j-1].name + ' : ' + parseInt(percentage) + '%' + '</b><br/>'; 
+                                    output = output + '<b>' + j + '. ' + data[i].cities[j-1].name + ' : ' + parseInt(percentage) + '%' + '</b><br/>';
                                 }
                                 break;
                             }
@@ -526,12 +533,12 @@ function loadchart(index) {
             var states = [];
             var melbourne = [];
             var sydney = []
-            
+
             for(var i = 0; i < data.length; i ++) {
                 states.push(data[i].state);
                 melbourne.push(-data[i].melbourne);
                 sydney.push(data[i].sydney);
-                
+
             }
             $('#melbourneSydney').highcharts({
                 chart: {

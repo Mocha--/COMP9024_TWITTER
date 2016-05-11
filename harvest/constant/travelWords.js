@@ -1,3 +1,11 @@
+/*
+xibo wang 652158
+yiming tan 676303
+yuqing han 680292
+xiang xue 675875
+mengya wang 692448
+ */
+
 var travelWords = ['airfare', 'airplane', 'airplanes', 'airport', 'airports', 'automobile', 'automobiles',
     'backpack', 'backpacks', 'baggage', 'baggages', 'bag', 'beaches', 'bicycles', 'bikes', 'boats', 'buses',
     'bags', 'beach', 'bicycle', 'bike', 'binoculars', 'boat', 'bus', 'cab', 'cabs', 'cabin', 'cabins', 'camera',

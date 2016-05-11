@@ -1,3 +1,11 @@
+/*
+xibo wang 652158
+yiming tan 676303
+yuqing han 680292
+xiang xue 675875
+mengya wang 692448
+ */
+
 var nano = require('nano')('http://115.146.85.141:5984');
 var writeDb = nano.use('travel_stats');
 var readDb = nano.use('twittes');

@@ -1,3 +1,11 @@
+/*
+xibo wang 652158
+yiming tan 676303
+yuqing han 680292
+xiang xue 675875
+mengya wang 692448
+ */
+
 var express = require('express');
 var app = express();
 var nano = require('nano')('http://115.146.85.141:5984');
@@ -335,7 +343,7 @@ function getFirstFiveCities(array) {
         var overseas = 0;
         if(data.domestic) {
             domestic = data.domestic;
-        } 
+        }
         if(data.overseas) {
             overseas = data.overseas;
         }

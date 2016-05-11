@@ -1,3 +1,11 @@
+/*
+xibo wang 652158
+yiming tan 676303
+yuqing han 680292
+xiang xue 675875
+mengya wang 692448
+ */
+
 'use strict';
 
 const couchdbUrl = 'http://115.146.85.141:5984/';

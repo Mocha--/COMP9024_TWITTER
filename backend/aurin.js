@@ -1,3 +1,10 @@
+/*
+xibo wang 652158
+yiming tan 676303
+yuqing han 680292
+xiang xue 675875
+mengya wang 692448
+ */
 var income = [{
 		state: "capital territory",
 		wage: 88270,
@@ -26,7 +33,7 @@ var population = [{
 		population: 7644200,
 	}, {
 		state: "victoria",
-		population: 5966700, 
+		population: 5966700,
 	}, {
 		state: "queensland",
 		population: 4792900,

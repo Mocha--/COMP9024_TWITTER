@@ -1,3 +1,11 @@
+/*
+xibo wang 652158
+yiming tan 676303
+yuqing han 680292
+xiang xue 675875
+mengya wang 692448
+ */
+
 var sentiment = require('sentiment');
 var cld = require('cld');
 var _ = require('lodash');
@@ -75,7 +83,7 @@ function findKeyword(jsonData, keyword) {
                             result.city = keyword;
                             result.overseas = true;
                             break;
-                        } 
+                        }
                     }
                 }
             } else {
@@ -140,7 +148,7 @@ function analyze(tweet, travelWords, jsonData, cb) {
     });
 }
 
-// only anlayze tweet from Australia 
+// only anlayze tweet from Australia
 function locationDetect(tweet, jsonData) {
     var location = tweet.location;
     // convert location to array
