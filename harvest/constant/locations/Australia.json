@@ -1,0 +1,485 @@
+{
+	"new south wales": {
+        "sydney": [
+            "sydney opera house",
+            "sydney harbour bridge",
+            "The rocks",
+            "Darling Harbour",
+            "Queen Victoria Building",
+            "Mrs Macquarie's Chair",
+            "The lord Nelson",
+            "Martin Place",
+            "Macquarie Street",
+            "forgotten songs",
+            "Nurragingy Reserve",
+            "Pyrmont Bridge",
+            "The Goods Line",
+            "Sirius Cove",
+            "welcome Wall",
+            "sawmillers Reserve",
+            "pioneers memorial park",
+            "badger and fox gallery",
+            "hickson road reserve",
+            "dawes point park",
+            "St.Mary's Cathedral",
+            "newtown",
+            "cockle bay wharf",
+            "glebe",
+            "kings cross",
+            "manly beach",
+            "shelly beach",
+            "bondi beach",
+            "coogee beach",
+            "clovelly",
+            "shark island",
+            "dee why beach",
+            "centenial park",
+            "hyde park",
+            "sydney park",
+            "cockatoo island",
+            "sydney harbour national park",
+            "blue mountain",
+            "palm beach"
+        ],
+        "Albury": [
+            "Noreuil Park"
+        ],
+        "Armidale": [
+            "Dangar Falls",
+            "Waterfall Way"
+        ],
+        "Bathurst": [],
+        "Broken Hill": [
+            "Pro Hart Gallery",
+            "Mutawintji National Park"
+        ],
+        "Lake Macquarie‎": [
+            "Speers Point Park"
+        ],
+        "Newcastle": [
+            "Tomaree Head",
+            "Nobbys Beach",
+            "Blackbutt Reserve"
+        ],
+        "Wollongong‎": [
+            "Nan Tien Temple",
+            "Wollongong Head Lighthouse"
+        ],
+        "Orange": [
+            "Lake Canobolas",
+            "cook park"
+        ],
+        "Liverpool": [],
+        "Parramatta": [
+            "Parramatta Park"
+        ],
+        "Penrith": [
+            "Museum of Fire"
+        ]
+    },
+    "victoria": {
+        "melbourne": [
+            "flinders street station",
+            "federation square",
+            "docklands",
+            "city square",
+            "royal botanic gardens",
+            "Melbourne cricket ground",
+            "southbank and arts centre melbourne",
+            "national gallery of victoria",
+            "Eureka tower",
+            "arcedes and laneways",
+            "melbourne museum",
+            "royal exhibition building",
+            "captain cook's cottage",
+            "yarra river cruise",
+            "queen victoria market",
+            "great ocean road",
+            "12 apostles",
+            "Puffing Billy",
+            "healesvile sanctuary",
+            "yarra valley wineries",
+            "penisula hot spring",
+            "Harbour Town",
+            "werrible mansion",
+            " St Kilda",
+            "crown casino",
+            "phillip island"
+        ],
+        "Mornington Peninsula": [
+            "Peninsula Hot Springs",
+            "Ashcombe Maze"
+        ],
+        "Gippsland": [
+            "Buchan Caves",
+            "Croajingolong National Park",
+            "Wilson Promontory",
+            "Ninety Mile Beach",
+            "State Coal Mine",
+            "Mount Baw Baw",
+            "Tarra Bulga National Park",
+            "Gippsland Lakes",
+            "The Great Alpine Road"
+        ],
+        "Daylesford": [
+            "Wombat Hill Botanic Gardens",
+            "Convent Gallery",
+            "Daylesford Day Spa"
+        ],
+        "the Macedon Ranges": [
+            "Mount Macedon",
+            "hanging rock"
+        ],
+        "ballarat": [
+            "Sovereign Hill",
+            "Lake Wendouree"
+        ],
+        "bendigo": [
+            "Central Deborah Gold Mine",
+            "Rosalind Park",
+            "Bendigo Pottery",
+            "Ulumbarra Theatre"
+        ],
+        "geelong": [
+            "Eastern Beach",
+            "Geelong Botanical Gardens"
+        ],
+        "Horsham": [],
+        "Morwell": [
+            "Morwell Centenary Rose Garden"
+        ],
+        "Sale": [
+            "La Trobe Swing Bridge"
+        ],
+        "Shepparton": [],
+        "Swan Hill": [
+            "Pioneer Settlement"
+        ],
+        "Warrnambool": [
+            "Flagstaff Hill Maritime Village"
+        ],
+        "Traralgon": [
+            "Newman Park"
+        ],
+        "Wodonga": []
+    },
+    "western australia": {
+        "perth": [
+            "kings park",
+            "rottnest island",
+            "sunset coast",
+            "moore river",
+            "gingin",
+            "chittering valley",
+            "rockingham",
+            "mandurah and peel",
+            "swan valley",
+            "mundaring",
+            "kalamunda",
+            "armadale",
+            "armadale hills scenic drive",
+            "araluen botanic park",
+            "Shoalwater Islands Marine Park",
+            "cottesloe",
+            "trigg",
+            "hillarys",
+            "Avon Valley",
+            "New Norcia",
+            "Rottnest Island",
+            "Whiteman Park"
+        ],
+        "fremantle": [
+            "Fremantle Prison",
+            "The Shipwreck Galleries",
+            "Western Australian Maritime Museum",
+            "Fremantle Markets"
+        ],
+        "Albany": [
+            "National Anzac Centre",
+            "Albany Wind Farm",
+            "Middleton Beach",
+            "Emu Point",
+            "The Gap and Natural Bridge",
+            "King George Sound"
+        ],
+        "Bunbury": [
+            "Koombana Bay",
+            "Dolphin & Whale Watching "
+        ],
+        "Geraldton": [
+            "Oakabella Homestead"
+        ],
+        "Joondalup": [
+            "Hillarys Boat Harbour",
+            "Mullaloo Beach",
+            "Burns Beach"
+        ],
+        "Kalgoorlie-Boulder": [
+            "The Superpit"
+        ],
+        "Mandurah‎": [
+            "Dolphin Quay",
+            "Eastern Foreshore Park"
+        ],
+        "Rockingham": [
+            "Penguin Island",
+            "Point Peron"
+        ]
+    },
+    "tasmania": {
+        "Hobart‎": [
+            "Mount Wellington",
+            "Royal Tasmanian Botanical Gardens",
+            "The Tench",
+            "Battery Point",
+            "Mawson's Hut Replica Museum",
+            "Salamanca Market",
+            "Tasmanian Museum and Art Gallery"
+        ],
+        "Devonport": [
+            "Spirit of Tasmania",
+            "Antique Emporium"
+        ],
+        "Burnie": [
+            "Makers Workshop",
+            "Emu Valley Rhododendron Garden",
+            "Hellyers Road Distillery"
+        ],
+        "Launceston": [
+            "Cataract Gorge Reserve",
+            "The Tamar Valley"
+        ],
+        "Lake St. Clair National Park": [
+            "Dove Lake Circuit",
+            "Wineglass Bay Lookout",
+            "Cradle Mountain"
+        ],
+        "Bay of Fires": [],
+        "Mount Field National Park": [
+            "Russell Falls"
+        ],
+        "Bicheno": [
+            "East Coast Natureworld"
+        ],
+        "Port Arthur": [
+            "Port Arthur Historic Site"
+        ]
+    },
+    "capital territory": {
+        "canberra": [
+            "Australian War Memorial",
+            "Questacon",
+            "Australian Parliament House",
+            "National Gallery of Australia",
+            "National Portrait Gallery",
+            "Lake Burley Griffin",
+            "Mount Ainslie",
+            "National Museum of Australia",
+            "Royal Australian Mint",
+            "Floriade"
+        ]
+    },
+    "queensland": {
+        "Brisbane": [
+            "Lone Pine Koala Sanctuary",
+            "CityCat Ferry",
+            "Roma Street Parkland",
+            "The Brisbane River",
+            "Gallery of Modern Art",
+            "Mount Coot-tha",
+            "Eagle Street Pier",
+            "Story Bridge",
+            "St. Helena Island",
+            "Wheel of Brisbane",
+            "Boggo Road Gaol",
+            "Rocks Riverside Park",
+            "Shorncliffe Beach"
+        ],
+        "Bundaberg": [
+            "Bundaberg Rum Distillery",
+            "Mon Repos",
+            "Hinkler Hall of Aviation",
+            "Bundaberg Botanic Gardens"
+        ],
+        "Cairns‎": [
+            "Esplanade Boardwalk",
+            "Muddy's Playground ",
+            "Cairns Botanic Gardens",
+            "Kuranda Scenic Railway",
+            "Michaelmas Cay",
+            "Trinity Beach",
+            "Green Island",
+            "Gallo DairyLand",
+            "Behana Gorge Waterfall",
+            "Centenary Lakes Botanic Gardens",
+            "Mt. Uncle Distillery",
+            "Great Barrier Reef",
+            ""
+        ],
+        "Caloundra": [
+            "Kings Beach",
+            "Bulcock Beach",
+            "Aussie World",
+            "Queensland Air Museum"
+        ],
+        "Charters Towers‎": [
+            "Venus Battery"
+        ],
+        "Gladstone": [
+            "East Shores Water Park",
+            "Tondoon Botanic Gardens"
+        ],
+        "Gold Coast": [
+            "Burleigh Heads Beach",
+            "Surfer's Paradise Beach",
+            "Coolangatta Beach",
+            "Kirra Beach",
+            "Natural Bridge",
+            "Putt Putt Golf",
+            "Snapper Rocks",
+            "The Rockpools",
+            "Kurrawa Beach",
+            "Currumbin Wildlife Sanctuary",
+            "Springbrook National Park",
+            "Burleigh Head National Park",
+            "Dreamworld",
+            "Sea World",
+            "Tamborine Mountain",
+            "Greenmount Beach",
+            "Gold Coast Convention and Exhibition Centre",
+            "Wet Wild Water World",
+            "Warner Bros. Movie World",
+            "WhiteWater World",
+            "Purling Brook Falls",
+            "Kirra Hill",
+            "Elephant Rock",
+            "Slingshot Gold Coast",
+            "Currumbin Beach",
+            "Carrara Markets ",
+            "David Fleay Wildlife Park",
+            "Macintosh Island Park"
+        ],
+        "Gympie": [
+            "Carlo Sand Blow",
+            "Rainbow Beach",
+            "Barnacles Dolphin Centre",
+            "Tin Can Bay"
+        ],
+        "Hervey Bay‎": [
+            "Hervey Bay Botanical Gardens",
+            "The Pier",
+            "Esplanade"
+        ],
+        "Ipswich": [
+            "Queens Park",
+            "The Workshops Rail Museum"
+        ],
+        "Logan city": [
+            "Kingston Park"
+        ],
+        "Mackay": [
+            "Bluewater Lagoon",
+            "Aqua Fun Park Mackay",
+            "Bluewater Trail"
+        ],
+        "Maryborough": [
+            "Fraser Coast Wildlife Sanctuary"
+        ],
+        "Mount Isa": [],
+        "Redland city": [
+            "Brown Lake"
+        ],
+        "Rockhampton‎": [],
+        "Toowoomba‎": [
+            "Japanese Garden",
+            "Queens Park",
+            "Laurel Bank Park"
+        ],
+        "Townsville‎": [
+            "The Strand",
+            "Castle Hill",
+            "Jezzine Barracks",
+            "Billabong Sanctuary",
+            "Reef HQ Great Barrier Reef Aquarium",
+            "Museum of Tropical Queensland",
+            "Mount Stuart",
+            "Townsville Palmetum"
+        ],
+        "Warwick": [
+            "The Royal Shakespeare Theatre",
+            "The MAD Museum",
+            "Jephson Gardens",
+            "Anne Hathaway's Cottage & Gardens",
+            "Kenilworth Castle",
+            "Mary Arden's Farm",
+            "Stratford-upon-Avon Canal",
+            "Shakespeare's Birthplace",
+            "Holy Trinity Church",
+            "Charlecote Park",
+            "Swan Theatre",
+            "Warwick Castle",
+            "Coughton Cour",
+            "Packwood House ",
+            "Stratford-upon-Avon Butterfly Farm",
+            "British Motor Museum",
+            "Hall's Croft",
+            "Compton Verney",
+            "Tudor World",
+            "Twycross Zoo"
+        ]
+    },
+    "north territory": {
+        "darwin": [
+            "Uluru",
+            "Kata Tjuta",
+            "Kings Canyon",
+            "Museum & Art Gallery of the Northern Territory",
+            "Defence of Darwin Experience",
+            "Alice Springs Desert Park",
+            "Mindil Beach",
+            "Wave Lagoon",
+            "Berry Springs Nature Park",
+            "Australian Aviation Heritage Centre",
+            "Darwin Wharf Precinct",
+            "Crocosaurus Cove",
+            "Magnetic Termite Mounds",
+            "Darwin Botanic Gardens"
+        ],
+        "Palmerston": [
+            "Arafura Bluewater Charters"
+        ],
+        "batchelor": [
+            "Litchfield National Park"
+        ],
+        "Alice Springs": [
+            "The Kangaroo Sanctuary",
+            "Alice Springs Telegraph Station Historical Reserve ",
+            "Anzac Hill",
+            "Alice Springs School of the Air Visitor Centre",
+            "Alice Springs Desert Park",
+            "Larapinta Trail",
+            "Alice Springs Reptile Centre"
+        ],
+        "Katherine": [
+            "Katherine Gorge",
+            "Edith Falls",
+            "Nitmiluk National Park",
+            "Katherine Hot Springs"
+        ],
+        "Tennant Creek": [],
+        "Nhulunbuy": [],
+        "Jabiru": [
+            "Ubirr",
+            "The Scenic Flight Company Kakadu",
+            "Gunlom Plunge Pool"
+        ],
+        "Kakadu National Park": [
+            "Nourlangie",
+            "Jim Jim Falls"
+        ],
+        "MacDonnell National Park": [
+            "MacDonnell Ranges",
+            "Ormiston Gorge and Pound "
+        ]
+    }
+}

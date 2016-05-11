@@ -1,0 +1,12 @@
+server {
+    listen 80 default_server;
+
+    location / {
+        root /home/ubuntu/COMP9024_TWITTER/frontend;
+        index index.html;
+    }
+
+    location /api/v1 {
+        proxy_pass http://localhost:8080;
+    }
+}

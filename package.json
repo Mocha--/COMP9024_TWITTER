@@ -5,7 +5,15 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "getTweets": "node getTweets"
+    "getTweets": "node getTweets",
+    "europe": "node getTweets/europe.js",
+    "oceania": "node getTweets/oceania.js",
+    "northAmerica": "node getTweets/northAmerica.js",
+    "southAmerica": "node getTweets/southAmerica.js",
+    "australia": "node getTweets/australia.js",
+    "africa": "node getTweets/africa.js",
+    "asia": "node getTweets/asia.js",
+    "analyze": "node analyze.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +26,14 @@
   },
   "homepage": "https://github.com/Mocha--/COMP9024_TWITTER#readme",
   "dependencies": {
-    "lodash": "^4.11.1",
+    "cld": "^2.4.5",
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "lodash": "^4.11.2",
+    "nano": "^6.2.0",
+    "request": "^2.72.0",
+    "sentiment": "^1.0.6",
+    "superagent": "^1.8.3",
     "twitter": "^1.2.5"
   }
 }

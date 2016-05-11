@@ -1,0 +1,140 @@
+body {width: 100%; margin: 0; zoom: 1; height: 100%; top: 0; overflow: hidden; font-family: Unica One, sans-serif;}
+.cluster {width: 100%; overflow: hidden; text-align: center; position: relative;}
+.cluster .content {width: 70%; max-width: 1200px; margin: 0 auto; height: 100%;}
+.cluster .currentData {position: fixed; font-size: 20px; top: 20px; left: 50px; color: #fff;}
+.cluster .currentData:after {display: inline-block; content: attr(data-content);}
+.cluster .menu {position: fixed; top: 20px; margin: 0 auto; width: 100%; height: 30px;}
+.cluster .menu .btn {width: auto; padding: 5px 20px; height: auto; font-size: 20px; color: #222831; background-color: #DBE2EF; opacity: 0.9; cursor: pointer; display: inline-block; margin: 0 3px;}
+.cluster .menu .btn:hover {background-color: #C5FCDA;}
+.cluster .menu .btn.active {background-color: #C5FCDA;}
+.cluster .title {font-size: 35px; color: #fff; font-weight: bold; padding-top: 0; opacity: 0;}
+.cluster .section .charts {padding-top: 6%; height: 65%;}
+.cluster .section .charts>div { height: 100%;}
+.cluster .section .charts b {font-size: 18px;}
+.cluster .active {display: block;}
+.cluster .hidden {display: none;}
+.cluster .previousPage a {background: url(previous.png) 50% 0 no-repeat; width: 60px; height: 60px; background-size: 50px 50px; position: fixed; bottom: 80px; right: 30px; cursor: pointer; text-decoration: none;}
+.cluster .previousPage a:hover {opacity: 0.7;}
+.cluster .nextPage a {background: url(next.png) 50% 0 no-repeat; width: 60px; height: 60px; background-size: 50px 50px; position: fixed; bottom: 20px; right: 30px; cursor: pointer; text-decoration: none;}
+.cluster .nextPage a:hover {opacity: 0.7;}
+.cluster .profile .title a {color: #C5FCDA;}
+.cluster .profile .members {width: 100%; margin: 0 auto; padding-top: 20px; font-size: 20px; color: #fff;}
+.cluster .profile .members.male {padding-top: 10px;}
+.cluster .profile .members span {background: url(Female.png) 0 50% no-repeat; background-size: 18px auto; padding-left: 20px; padding-right: 20px;}
+.cluster .profile .members.male span {background-image: url(Male.png); background-size: 16px auto;}
+.cluster .profile .image {height: 50%; background: url(image.jpg) 50% 100% no-repeat; background-size: auto 94%;}
+.cluster .profile .image.scale {
+  animation-name: scaleToLarge;
+  -webkit-animation-name: scaleToLarge;
+  -o-animation-name: scaleToLarge;
+  -ms-animation-name: scaleToLarge;
+  -moz-animation-name: scaleToLarge;
+  animation-duration: 1.5s;
+  -webkit-animation-duration: 1.5s;
+  -ms-animation-duration: 1.5s;
+  -moz-animation-duration: 1.5s;
+  -o-animation-duration: 1.5s;
+}
+
+@keyframes scaleToLarge {
+  0% {transform: scale(1.5); transform-origin: top center;}
+  100% {transform: scale(1);}
+}
+@-webkit-keyframes scaleToLarge {
+  0% {transform: scale(1.5); transform-origin: top center;}
+  100% {transform: scale(1);}
+}
+@-o-keyframes scaleToLarge {
+  0% {transform: scale(1.5); transform-origin: top center;}
+  100% {transform: scale(1);}
+}
+@-ms-keyframes scaleToLarge {
+  0% {transform: scale(1.5); transform-origin: top center;}
+  100% {transform: scale(1);}
+}
+@-moz-keyframes scaleToLarge {
+  0% {transform: scale(1.5); transform-origin: top center;}
+  100% {transform: scale(1);}
+}
+
+
+.cluster .background {
+  background: url('bg.jpeg') 50% 0 no-repeat; 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%;  
+  background-size: auto 100%;
+}
+.cluster .section {position: relative; margin: 0;}
+
+.show {
+  animation-name: appear;
+  -webkit-animation-name: appear;
+  -ms-animation-name: appear;
+  -moz-animation-name: appear;
+  -o-animationname: appear;
+  animation-duration: 1.5s;
+  -webkit-animation-duration: 1.5s;
+  -ms-animation-duration: 1.5s;
+  -moz-animation-duration: 1.5s;
+  -o-animation-duration: 1.5s;
+}
+@keyframes appear {
+  0% {opacity: 0;}
+  100% {opacity: 0.9;}
+}
+@-webkit-keyframes appear {
+  0% {opacity: 0;}
+  100% {opacity: 0.9;}
+}
+@-ms-keyframes appear {
+  0% {opacity: 0;}
+  100% {opacity: 0.9;}
+}
+@-moz-keyframes appear {
+  0% {opacity: 0;}
+  100% {opacity: 0.9;}
+}
+@-o-keyframes appear {
+  0% {opacity: 0;}
+  100% {opacity: 0.9;}
+}
+
+.left-to-center {
+	animation-name: leftToCenter;
+	-webkit-animation-name: leftToCenter;
+	-o-animation-name: leftToCenter;
+	-ms-animation-name: leftToCenter;
+	-moz-animation-name: leftToCenter;
+	animation-duration: 1s;
+  -webkit-animation-duration: 1s;
+  -ms-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  -o-animation-duration: 1s;
+  animation-fill-mode: forwards;
+  -webkit-animation-fill-mode: forwards;
+  -o-animation-fill-mode: forwards;
+  -ms-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
+}
+@keyframes leftToCenter {
+  0% {padding-top: 0px; opacity: 1;}
+  100% {padding-top: 10%; opacity: 1;}
+}
+@-webkit-keyframes leftToCenter {
+  0% {padding-top: 0px; opacity: 1;}
+  100% {padding-top: 10%; opacity: 1;}
+}
+@-ms-keyframes leftToCenter {
+  0% {padding-top: 0px; opacity: 1;}
+  100% {padding-top: 10%; opacity: 1;}
+}
+@-moz-keyframes leftToCenter {
+  0% {padding-top: 0px; opacity: 1;}
+  100% {padding-top: 10%; opacity: 1;}
+}
+@-o-keyframes leftToCenter {
+  0% {padding-top: 0px; opacity: 1;}
+  100% {padding-top: 10%; opacity: 1;}
+}

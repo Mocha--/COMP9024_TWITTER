@@ -1,8 +1,12 @@
 # COMP9024_TWITTER
+Run npm install to make sure all dependencies installed
 
-### get tweets
+### Deployment
+list ips in /deployment/inventory
+run script /deployment/deploy.sh
 
-1. sudo npm install
-2. npm run getTweets
+### harvest
+run command "node harvest/harvest.js [totalInstanceNum] [InstanceNum]"
 
-not facebook
+### backend
+run command "pm2 start /backend/server"
