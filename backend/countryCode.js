@@ -281,11 +281,11 @@ var code = [{
 }, {
     "code": "DE",
     "value": 234,
-    "name": "Germany"
+    "name": "German"
 }, {
     "code": "DD",
-    "value": 23,
-    "name": "German"
+    "value": 1,
+    "name": "German Democratic Republic"
 },{
     "code": "GH",
     "value": 107,
@@ -399,11 +399,11 @@ var code = [{
     "value": 123,
     "name": "Kiribati"
 }, {
-    "code": "KP",
+    "code": "KR",
     "value": 202,
     "name": "Korea"
 }, {
-    "code": "KR",
+    "code": "KP",
     "value": 0,
     "name": "Korea, Rep."
 }, {

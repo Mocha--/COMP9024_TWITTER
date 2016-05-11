@@ -75,21 +75,31 @@ function scrollFunc(change) {
                 $('.cluster .menu .overview').removeClass('active');
                 $('.cluster .menu .overseas').removeClass('active');
                 $('.cluster .menu .domestic').removeClass('active');
+                $('.cluster .menu .global').removeClass('active');
             }
-            else if(index === 1) {
+            else if(index >= 1 && index < 3) {
                 $('.cluster .menu .overview').addClass('active');
                 $('.cluster .menu .overseas').removeClass('active');
                 $('.cluster .menu .domestic').removeClass('active');
+                $('.cluster .menu .global').removeClass('active');
             }
-            else if(index > 1 && index < 5) {
+            else if(index === 3) {
                 $('.cluster .menu .overview').removeClass('active');
                 $('.cluster .menu .overseas').addClass('active');
                 $('.cluster .menu .domestic').removeClass('active');
+                $('.cluster .menu .global').removeClass('active');
+            }
+            else if(index > 3 && index <= 5) {
+                $('.cluster .menu .overview').removeClass('active');
+                $('.cluster .menu .overseas').removeClass('active');
+                $('.cluster .menu .domestic').addClass('active');
+                $('.cluster .menu .global').removeClass('active');
             }
             else {
                 $('.cluster .menu .overview').removeClass('active');
                 $('.cluster .menu .overseas').removeClass('active');
-                $('.cluster .menu .domestic').addClass('active');
+                $('.cluster .menu .domestic').removeClass('active');
+                $('.cluster .menu .global').addClass('active');
             }
         });
     $(sections[index]).find('.title').removeClass('left-to-center');
@@ -139,7 +149,7 @@ function loadchart(index) {
         });
     }
 
-    if(index === 2) {
+    if(index === 3) {
         $.getJSON(apiBase + "/graph2",function(data) {
             var positive = [];
             var negative = [];
@@ -151,7 +161,6 @@ function loadchart(index) {
                 continents.push(data[i].name);
                 countries.push(data[i].countries);
             }
-            console.log(negative);
             $('#overseas').highcharts({
                 chart: {
                     type: 'column'
@@ -249,7 +258,7 @@ function loadchart(index) {
         });
     }//
 
-    if(index === 3) {
+    if(index === 2) {
         $.getJSON(apiBase + '/graph3', function (data) {
 
         // Add lower case codes to the data set for inclusion in the tooltip.pointFormat
@@ -317,7 +326,7 @@ function loadchart(index) {
     });
     }
 
-    if(index === 4) {
+    if(index === 6) {
         $.getJSON(apiBase + "/graph4",function(data) {
             var overseas = [];
             var domestic = [];
@@ -411,7 +420,7 @@ function loadchart(index) {
         });
     }//
 
-    if(index === 5) {
+    if(index === 4) {
         $.getJSON(apiBase + "/graph5",function(data) {
             var positive = [];
             var negative = [];
@@ -512,7 +521,7 @@ function loadchart(index) {
         });
     }//
 
-    if(index === 6) {
+    if(index === 5) {
         $.getJSON(apiBase + "/graph6",function(data) {
             var states = [];
             var melbourne = [];
@@ -703,7 +712,6 @@ $(document).ready(function() {
     var height = window.screen.availHeight;
     $('.cluster .background').css({'height': height + 50 + 'px'});
     $('.cluster .section').css({'height': height + 'px'});
-    loadchart(index);
     $('.cluster .previousPage').addClass('hidden');
 
     //********************* menu button ******************************
@@ -711,10 +719,13 @@ $('.cluster .menu .overview').click(function() {
     scrollFunc(1 - index);
 });
 $('.cluster .menu .overseas').click(function() {
-    scrollFunc(2 - index);
+    scrollFunc(3 - index);
 });
 $('.cluster .menu .domestic').click(function() {
-    scrollFunc(5 - index);
+    scrollFunc(4 - index);
+});
+$('.cluster .menu .global').click(function() {
+    scrollFunc(6 - index);
 });
 
 //******************** turn over the page *************************
