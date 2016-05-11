@@ -161,7 +161,6 @@ function loadchart(index) {
                 continents.push(data[i].name);
                 countries.push(data[i].countries);
             }
-            console.log(negative);
             $('#overseas').highcharts({
                 chart: {
                     type: 'column'
