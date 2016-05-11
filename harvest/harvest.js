@@ -4,6 +4,8 @@ yiming tan 676303
 yuqing han 680292
 xiang xue 675875
 mengya wang 692448
+
+team 7
  */
 
 var nano = require('nano')('http://115.146.85.141:5984');

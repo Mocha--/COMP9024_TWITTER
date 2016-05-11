@@ -4,6 +4,8 @@ yiming tan 676303
 yuqing han 680292
 xiang xue 675875
 mengya wang 692448
+
+team 7
  */
 var income = [{
 		state: "capital territory",
